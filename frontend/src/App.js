@@ -1,5 +1,7 @@
 import React from 'react';
 import styled, {createGlobalStyle} from 'styled-components'
+import CssBaseline from '@material-ui/core/CssBaseline';
+import 'typeface-roboto';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -36,6 +38,7 @@ const Footer = styled.footer`
 function App() {
   return (
     <>
+      <CssBaseline />
       <GlobalStyle/>
       <Container>
         <Header>Header</Header>
