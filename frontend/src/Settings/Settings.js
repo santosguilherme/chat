@@ -7,8 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-
-
+import Button from '@material-ui/core/Button';
 
 const Form = styled.div`
   display: flex;
@@ -70,6 +69,7 @@ export default function Settings(){
         <MenuItem value="enUS">English</MenuItem>
         <MenuItem value="ptBR">Português</MenuItem>
       </TextField>
+      <Button variant="contained" fullWidth>Reset to defaults</Button>
     </Form>
   );
 }
