@@ -1,6 +1,6 @@
 import { createActions, handleActions } from 'redux-actions';
 
-const STATE_KEY = 'userSettings';
+export const STATE_KEY = 'userSettings';
 
 /* Actions Types */
 const UPDATE_USER_NAME = 'UPDATE_USER_NAME';
@@ -39,7 +39,7 @@ export const actions = {
 
 /* State */
 const initialState = {
-  userName: 'Guilherme X',
+  userName: 'Guest',
   interfaceColor: 'light',
   clockDisplay: '12',
   enterMode: false,
