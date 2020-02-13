@@ -8,10 +8,7 @@ const UPDATE_INTERFACE_COLOR = 'UPDATE_INTERFACE_COLOR';
 const UPDATE_CLOCK_DISPLAY = 'UPDATE_CLOCK_DISPLAY';
 const UPDATE_ENTER_MODE = 'UPDATE_ENTER_MODE';
 const UPDATE_LANGUAGE = 'UPDATE_LANGUAGE';
-
-export const types = {
-
-};
+const RESET_DEFAULTS = 'RESET_DEFAULTS';
 
 /* Actions */
 const {
@@ -19,13 +16,15 @@ const {
   updateInterfaceColor,
   updateClockDisplay,
   updateEnterMode,
-  updateLanguage
+  updateLanguage,
+  resetDefaults
 } = createActions(
   UPDATE_USER_NAME,
   UPDATE_INTERFACE_COLOR,
   UPDATE_CLOCK_DISPLAY,
   UPDATE_ENTER_MODE,
   UPDATE_LANGUAGE,
+  RESET_DEFAULTS,
   { prefix: STATE_KEY }
 );
 
@@ -34,7 +33,8 @@ export const actions = {
   updateInterfaceColor,
   updateClockDisplay,
   updateEnterMode,
-  updateLanguage
+  updateLanguage,
+  resetDefaults
 };
 
 /* State */
@@ -51,13 +51,16 @@ const createUpdateHandler = stateAttr => (state, action) => ({
   [stateAttr]: action.payload
 });
 
-/* Reducers */
+/* Reducer */
 export default handleActions({
   [updateUserName]: createUpdateHandler('userName'),
   [updateInterfaceColor]: createUpdateHandler('interfaceColor'),
   [updateClockDisplay]: createUpdateHandler('clockDisplay'),
   [updateEnterMode]: createUpdateHandler('enterMode'),
   [updateLanguage]: createUpdateHandler('language'),
+  [resetDefaults]: () => ({
+    ...initialState
+  })
 }, initialState);
 
 /* Selectors */

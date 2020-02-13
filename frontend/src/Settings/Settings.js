@@ -76,6 +76,12 @@ export default function Settings() {
     (event) => dispatch(actions.updateLanguage(event.target.value)),
     [dispatch]
   );
+
+  const handleResetDefaultsClick = useCallback(
+    () => dispatch(actions.resetDefaults()),
+    [dispatch]
+  );
+
   return (
     <TabContainer>
       <TabContent>
@@ -108,7 +114,7 @@ export default function Settings() {
         </TextField>
       </TabContent>
       <TabFooter>
-        <Button variant="contained" fullWidth>Reset to defaults</Button>
+        <Button variant="contained" fullWidth onClick={handleResetDefaultsClick}>Reset to defaults</Button>
       </TabFooter>
     </TabContainer>
   );
