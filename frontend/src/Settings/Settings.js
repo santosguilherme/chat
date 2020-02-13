@@ -15,15 +15,17 @@ import Button from '@material-ui/core/Button';
 import { actions, selectors } from '../redux/modules/userSettings';
 
 const TabContainer = styled.div`
-  padding: 1rem;
   height: 100%;
 
   display: grid;
-  grid-row-gap: 1rem;
-  grid-template-rows: auto min-content;
+  grid-template-columns: 1rem auto 1rem;
+  grid-template-rows: 1rem auto 1rem min-content 1rem;
   grid-template-areas:
-    "tab-content"
-    "tab-footer";
+    ". . ."
+    ". tab-content ."
+    ". . ."
+    ". tab-footer ."
+    ". . .";
 `;
 
 const TabContent = styled.div`
