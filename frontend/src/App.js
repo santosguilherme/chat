@@ -3,6 +3,7 @@ import styled, {createGlobalStyle} from 'styled-components'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import AppBar from '@material-ui/core/AppBar';
 
 import 'typeface-roboto';
 
@@ -26,16 +27,12 @@ const Container = styled.main`
 `;
 
 
-const Header = styled.header`
+const Header = styled(AppBar)`
 `;
 
 const Body = styled.div`
   flex: 1;
   overflow: auto;
-`;
-
-const Footer = styled.footer`
-  background: green;
 `;
 
 const tabs = {
@@ -44,7 +41,7 @@ const tabs = {
 };
 
 function App() {
-  const [activeTab, setActiveTab] = React.useState(0);
+  const [activeTab, setActiveTab] = React.useState(1);
 
   const handleChangeTab = (event, newValue) => {
     setActiveTab(newValue);
@@ -55,7 +52,7 @@ function App() {
       <CssBaseline />
       <GlobalStyle/>
       <Container>
-        <Header>
+        <Header position="static">
           <Tabs value={activeTab} onChange={handleChangeTab}>
             <Tab label="Chat" />
             <Tab label="Settings" />
@@ -64,7 +61,6 @@ function App() {
         <Body>
           {tabs[activeTab]}
         </Body>
-        <Footer>Footer</Footer>
       </Container>
     </>
   );
