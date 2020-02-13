@@ -1,4 +1,7 @@
-import { combineReducers } from '@reduxjs/toolkit'
+import {combineReducers} from 'redux';
+
+import userSettings from './modules/userSettings';
 
 export default combineReducers({
+  userSettings,
 });

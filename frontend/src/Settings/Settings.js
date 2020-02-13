@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import styled from 'styled-components';
+
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -8,6 +11,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+
+import { actions, selectors } from '../redux/modules/userSettings';
 
 const TabContainer = styled.div`
   padding: 1rem;
@@ -39,32 +44,38 @@ const StyledTextField = styled(TextField)`
 `;
 
 export default function Settings() {
-  const [userName, setUserName] = React.useState('Guest');
-  const [interfaceColor, setInterfaceColor] = React.useState('light');
-  const [clockDisplay, setClockDisplay] = React.useState('12');
-  const [enterMode, setEnterMode] = React.useState(false);
-  const [language, setLanguage] = React.useState('enUS');
+  const dispatch = useDispatch();
 
-  const handleChangeUserName = event => {
-    setUserName(event.target.value);
-  };
+  const userName = useSelector(selectors.getUserName);
+  const interfaceColor = useSelector(selectors.getInterfaceColor);
+  const clockDisplay = useSelector(selectors.getClockDisplay);
+  const enterMode = useSelector(selectors.getEnterMode);
+  const language = useSelector(selectors.getLanguage);
 
-  const handleChangeInterfaceColor = event => {
-    setInterfaceColor(event.target.value);
-  };
+  const handleChangeUserName = useCallback(
+    (event) => dispatch(actions.updateUserName(event.target.value)),
+    [dispatch]
+  );
 
-  const handleChangeClockDisplay = event => {
-    setClockDisplay(event.target.value);
-  };
+  const handleChangeInterfaceColor = useCallback(
+    (event) => dispatch(actions.updateInterfaceColor(event.target.value)),
+    [dispatch]
+  );
 
-  const handleChangeEnterMode = event => {
-    setEnterMode(event.target.value === 'true');
-  };
+  const handleChangeClockDisplay = useCallback(
+    (event) => dispatch(actions.updateClockDisplay(event.target.value)),
+    [dispatch]
+  );
 
-  const handleChangeLanguage = event => {
-    setLanguage(event.target.value);
-  };
+  const handleChangeEnterMode = useCallback(
+    (event) => dispatch(actions.updateEnterMode(event.target.value === 'true')),
+    [dispatch]
+  );
 
+  const handleChangeLanguage = useCallback(
+    (event) => dispatch(actions.updateLanguage(event.target.value)),
+    [dispatch]
+  );
   return (
     <TabContainer>
       <TabContent>

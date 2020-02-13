@@ -1,16 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {createStore} from 'redux';
 
 import rootReducer from './reducers';
 
-const store = configureStore({
-  reducer: rootReducer
-});
+const store = createStore(rootReducer, {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
+  // Enable Webpack hot module replacement for reducers
   module.hot.accept('./reducers', () => {
-    const newRootReducer = require('./reducers').default;
-    store.replaceReducer(newRootReducer);
-  })
+    const nextReducer = require('./reducers').default;
+    store.replaceReducer(nextReducer);
+  });
 }
 
-export default store
+export default store;
