@@ -1,28 +1,32 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   height: 100%;
 
-  display: grid;
-  grid-template-columns: 1rem auto 1rem;
-  grid-template-rows: 1rem auto 1rem min-content 1rem;
-  grid-template-areas:
-    ". . ."
-    ". content ."
-    ". . ."
-    ". footer ."
-    ". . .";
+  display: flex;
+  flex-direction: column;
 `;
 
+const backgroundColorCSS = ({ backgroundColor }) => {
+  return backgroundColor && css`
+    background-color: ${backgroundColor};
+  `;
+};
+
 export const Content = styled.div`
-  grid-area: content;
+  padding: 1rem;
+  flex: 1;
   overflow: auto;
 
   display: grid;
   grid-row-gap: 1rem;
   grid-auto-rows: min-content;
+
+  ${backgroundColorCSS};
 `;
 
 export const Footer = styled.div`
-  grid-area: footer;
+  padding: 1rem;
+
+  ${backgroundColorCSS};
 `;
