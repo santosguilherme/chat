@@ -41,7 +41,7 @@ const tabs = {
 };
 
 function App() {
-  const [activeTab, setActiveTab] = React.useState(1);
+  const [activeTab, setActiveTab] = React.useState(0);
 
   const handleChangeTab = (event, newValue) => {
     setActiveTab(newValue);
