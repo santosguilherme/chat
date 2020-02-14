@@ -14,32 +14,7 @@ import Button from '@material-ui/core/Button';
 
 import { actions, selectors } from '../redux/modules/userSettings';
 
-const TabContainer = styled.div`
-  height: 100%;
-
-  display: grid;
-  grid-template-columns: 1rem auto 1rem;
-  grid-template-rows: 1rem auto 1rem min-content 1rem;
-  grid-template-areas:
-    ". . ."
-    ". tab-content ."
-    ". . ."
-    ". tab-footer ."
-    ". . .";
-`;
-
-const TabContent = styled.div`
-  grid-area: tab-content;
-  overflow: auto;
-
-  display: grid;
-  grid-row-gap: 1rem;
-  grid-auto-rows: min-content;
-`;
-
-const TabFooter = styled.div`
-  grid-area: tab-footer;
-`;
+import Screen from '../commons/components/Screen/Screen';
 
 const StyledTextField = styled(TextField)`
   margin-top: 0.5rem;
@@ -85,39 +60,43 @@ export default function Settings() {
   );
 
   return (
-    <TabContainer>
-      <TabContent>
-        <StyledTextField value={userName} onChange={handleChangeUserName} label="User name" required variant="outlined" />
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Interface color</FormLabel>
-          <RadioGroup row name="interfaceColor" value={interfaceColor} onChange={handleChangeInterfaceColor}>
-            <FormControlLabel value="light" control={<Radio/>} label="Light"/>
-            <FormControlLabel value="dark" control={<Radio/>} label="Dark"/>
-          </RadioGroup>
-        </FormControl>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Clock display</FormLabel>
-          <RadioGroup row name="clockDisplay" value={clockDisplay} onChange={handleChangeClockDisplay}>
-            <FormControlLabel value="12" control={<Radio/>} label="12 hours"/>
-            <FormControlLabel value="24" control={<Radio/>} label="24 hours"/>
-          </RadioGroup>
-        </FormControl>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Send messages on CTRL + ENTER</FormLabel>
-          <RadioGroup row name="enterMode" value={enterMode} onChange={handleChangeEnterMode}>
-            <FormControlLabel value={true} control={<Radio/>} label="On"/>
-            <FormControlLabel value={false} control={<Radio/>} label="Off"/>
-          </RadioGroup>
-        </FormControl>
-        <TextField id="select" label="Language" value={language} onChange={handleChangeLanguage} variant="outlined"
-                   select>
-          <MenuItem value="enUS">English</MenuItem>
-          <MenuItem value="ptBR">Português</MenuItem>
-        </TextField>
-      </TabContent>
-      <TabFooter>
-        <Button variant="contained" fullWidth onClick={handleResetDefaultsClick}>Reset to defaults</Button>
-      </TabFooter>
-    </TabContainer>
+    <Screen>
+      {({ Content, Footer }) => (
+        <>
+          <Content>
+            <StyledTextField value={userName} onChange={handleChangeUserName} label="User name" required variant="outlined" />
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Interface color</FormLabel>
+              <RadioGroup row name="interfaceColor" value={interfaceColor} onChange={handleChangeInterfaceColor}>
+                <FormControlLabel value="light" control={<Radio/>} label="Light"/>
+                <FormControlLabel value="dark" control={<Radio/>} label="Dark"/>
+              </RadioGroup>
+            </FormControl>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Clock display</FormLabel>
+              <RadioGroup row name="clockDisplay" value={clockDisplay} onChange={handleChangeClockDisplay}>
+                <FormControlLabel value="12" control={<Radio/>} label="12 hours"/>
+                <FormControlLabel value="24" control={<Radio/>} label="24 hours"/>
+              </RadioGroup>
+            </FormControl>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Send messages on CTRL + ENTER</FormLabel>
+              <RadioGroup row name="enterMode" value={enterMode} onChange={handleChangeEnterMode}>
+                <FormControlLabel value={true} control={<Radio/>} label="On"/>
+                <FormControlLabel value={false} control={<Radio/>} label="Off"/>
+              </RadioGroup>
+            </FormControl>
+            <TextField id="select" label="Language" value={language} onChange={handleChangeLanguage} variant="outlined"
+                       select>
+              <MenuItem value="enUS">English</MenuItem>
+              <MenuItem value="ptBR">Português</MenuItem>
+            </TextField>
+          </Content>
+          <Footer>
+            <Button variant="contained" fullWidth onClick={handleResetDefaultsClick}>Reset to defaults</Button>
+          </Footer>
+        </>
+      )}
+    </Screen>
   );
 }
