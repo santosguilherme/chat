@@ -7,13 +7,23 @@ import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import Screen from '../commons/components/Screen/Screen';
 import ChatMessage from '../commons/components/ChatMessage/ChatMessage';
 
-const SendMessage = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 const StyledTextField = styled(TextField)`
   background-color: #fff;
+  grid-area: input;
+`;
+
+const SendMessageButton = styled.div`
+  grid-area: button;
+  align-self: center;
+`;
+
+const SendMessageGrid = styled.div`
+  display: grid;
+  grid-column-gap: 1rem;
+  grid-auto-columns: min-content;
+  grid-template-columns: auto min-content;
+  grid-template-areas:
+    "input button";
 `;
 
 export default function Chat() {
@@ -65,12 +75,14 @@ export default function Chat() {
             />
           </Content>
           <Footer backgroundColor="#f0f0f0">
-            <SendMessage>
+            <SendMessageGrid>
               <StyledTextField id="filled-basic" placeholder="Enter message" variant="outlined" fullWidth/>
-              <IconButton aria-label="delete">
-                <SendRoundedIcon/>
-              </IconButton>
-            </SendMessage>
+              <SendMessageButton>
+                <IconButton aria-label="delete">
+                  <SendRoundedIcon/>
+                </IconButton>
+              </SendMessageButton>
+            </SendMessageGrid>
           </Footer>
         </>
       )}
