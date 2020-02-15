@@ -19,12 +19,12 @@ const StyledTextField = styled(TextField)`
   margin-top: 0.5rem;
 `;
 
-export default function Settings() {
+function Settings() {
   const dispatch = useDispatch();
 
   const userName = useSelector(selectors.getUserName);
   const interfaceColor = useSelector(selectors.getInterfaceColor);
-  const clockDisplay = useSelector(selectors.getClockDisplay);
+  const hour12 = useSelector(selectors.getHour12);
   const enterMode = useSelector(selectors.getEnterMode);
   const language = useSelector(selectors.getLanguage);
 
@@ -38,8 +38,8 @@ export default function Settings() {
     [dispatch]
   );
 
-  const handleChangeClockDisplay = useCallback(
-    (event) => dispatch(actions.updateClockDisplay(event.target.value)),
+  const handleChangeHour12 = useCallback(
+    (event) => dispatch(actions.updateHour12(event.target.value === 'true')),
     [dispatch]
   );
 
@@ -73,9 +73,9 @@ export default function Settings() {
             </FormControl>
             <FormControl component="fieldset">
               <FormLabel component="legend">Clock display</FormLabel>
-              <RadioGroup row name="clockDisplay" value={clockDisplay} onChange={handleChangeClockDisplay}>
-                <FormControlLabel value="12" control={<Radio/>} label="12 hours"/>
-                <FormControlLabel value="24" control={<Radio/>} label="24 hours"/>
+              <RadioGroup row name="clockDisplay" value={hour12} onChange={handleChangeHour12}>
+                <FormControlLabel value={true} control={<Radio/>} label="12 hours"/>
+                <FormControlLabel value={false} control={<Radio/>} label="24 hours"/>
               </RadioGroup>
             </FormControl>
             <FormControl component="fieldset">
@@ -99,3 +99,5 @@ export default function Settings() {
     </Screen>
   );
 }
+
+export default Settings;

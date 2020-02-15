@@ -5,7 +5,7 @@ export const STATE_KEY = 'userSettings';
 /* Actions Types */
 const UPDATE_USER_NAME = 'UPDATE_USER_NAME';
 const UPDATE_INTERFACE_COLOR = 'UPDATE_INTERFACE_COLOR';
-const UPDATE_CLOCK_DISPLAY = 'UPDATE_CLOCK_DISPLAY';
+const UPDATE_HOUR_12 = 'UPDATE_HOUR_12';
 const UPDATE_ENTER_MODE = 'UPDATE_ENTER_MODE';
 const UPDATE_LANGUAGE = 'UPDATE_LANGUAGE';
 const RESET_DEFAULTS = 'RESET_DEFAULTS';
@@ -14,14 +14,14 @@ const RESET_DEFAULTS = 'RESET_DEFAULTS';
 const {
   updateUserName,
   updateInterfaceColor,
-  updateClockDisplay,
+  updateHour12,
   updateEnterMode,
   updateLanguage,
   resetDefaults
 } = createActions(
   UPDATE_USER_NAME,
   UPDATE_INTERFACE_COLOR,
-  UPDATE_CLOCK_DISPLAY,
+  UPDATE_HOUR_12,
   UPDATE_ENTER_MODE,
   UPDATE_LANGUAGE,
   RESET_DEFAULTS,
@@ -31,7 +31,7 @@ const {
 export const actions = {
   updateUserName,
   updateInterfaceColor,
-  updateClockDisplay,
+  updateHour12,
   updateEnterMode,
   updateLanguage,
   resetDefaults
@@ -41,7 +41,7 @@ export const actions = {
 const initialState = {
   userName: 'Guest',
   interfaceColor: 'light',
-  clockDisplay: '12',
+  hour12: true,
   enterMode: false,
   language: 'enUS',
 };
@@ -55,7 +55,7 @@ const createUpdateHandler = stateAttr => (state, action) => ({
 export default handleActions({
   [updateUserName]: createUpdateHandler('userName'),
   [updateInterfaceColor]: createUpdateHandler('interfaceColor'),
-  [updateClockDisplay]: createUpdateHandler('clockDisplay'),
+  [updateHour12]: createUpdateHandler('hour12'),
   [updateEnterMode]: createUpdateHandler('enterMode'),
   [updateLanguage]: createUpdateHandler('language'),
   [resetDefaults]: () => ({
@@ -67,7 +67,7 @@ export default handleActions({
 export const selectors = {
   getUserName: state => state[STATE_KEY].userName,
   getInterfaceColor: state => state[STATE_KEY].interfaceColor,
-  getClockDisplay: state => state[STATE_KEY].clockDisplay,
+  getHour12: state => state[STATE_KEY].hour12,
   getEnterMode: state => state[STATE_KEY].enterMode,
   getLanguage: state => state[STATE_KEY].language,
 };

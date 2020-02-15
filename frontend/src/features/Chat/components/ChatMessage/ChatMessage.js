@@ -5,12 +5,12 @@ import Typography from '@material-ui/core/Typography';
 import {Message, MessageRow} from './styles/Container';
 import {MessageContent, MessageTime} from './styles/Content';
 
-function ChatMessage({align, backgroundColor, userName, message, dateTime}) {
+function ChatMessage({align, backgroundColor, userName, message, dateTime, hour12}) {
   const locale = 'en-US'; // TOOD: receber vindo do settings
   const date = new Date(dateTime);
   const messageTime = date.toLocaleTimeString(locale, {
     timeStyle: 'short',
-    hour12: false, // TOOD: receber vindo do settings
+    hour12
   });
 
   return (
@@ -38,6 +38,7 @@ ChatMessage.propTypes = {
   userName: PropTypes.string,
   message: PropTypes.string,
   dateTime: PropTypes.string,
+  hour12: PropTypes.bool.isRequired,
 };
 
 export default ChatMessage;

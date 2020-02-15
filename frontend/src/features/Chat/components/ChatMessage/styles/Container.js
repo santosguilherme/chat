@@ -22,7 +22,7 @@ export const MessageRow = styled.div`
 
 export const Message = styled(Paper)`
   display: grid;
-  grid-template-columns: auto min-content;
+  grid-template-columns: auto auto;
 
   ${backgroundColorCSS};
 `;

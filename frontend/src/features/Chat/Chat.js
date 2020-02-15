@@ -12,6 +12,8 @@ function Chat() {
   const dispatch = useDispatch();
 
   const userName = useSelector(userSettingsSelectors.getUserName);
+  const hour12 = useSelector(userSettingsSelectors.getHour12);
+
   const messages = useSelector(messagesSelectors.getMessages);
   const loggedUserId = useSelector(messagesSelectors.getUserId);
 
@@ -34,22 +36,24 @@ function Chat() {
     return loggedUserId === messageUserId;
   };
 
-  const renderLoggedUserMessage = ({ id, text, dateTime}) => (
+  const renderLoggedUserMessage = ({ id, text, dateTime}, props) => (
     <ChatMessage
       key={id}
       align="left"
       backgroundColor="#DCF8C6"
       message={text}
       dateTime={dateTime}
+      {...props}
     />
   );
 
-  const renderNonLoggedUserMessage = ({id, userName, text, dateTime}) => (
+  const renderNonLoggedUserMessage = ({id, userName, text, dateTime}, props) => (
     <ChatMessage
       key={id}
       userName={userName}
       message={text}
       dateTime={dateTime}
+      {...props}
     />
   );
 
@@ -57,8 +61,8 @@ function Chat() {
   const renderChatMessage = message => {
     const { userId } = message;
     return isLoggedUserMessage(userId)
-      ? renderLoggedUserMessage(message)
-      : renderNonLoggedUserMessage(message);
+      ? renderLoggedUserMessage(message, { hour12 })
+      : renderNonLoggedUserMessage(message, { hour12 });
   };
 
   return (
