@@ -2,10 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 
-import { Message, MessageRow } from './styles/Container';
-import { MessageContent, MessageTime } from './styles/Content';
+import {Message, MessageRow} from './styles/Container';
+import {MessageContent, MessageTime} from './styles/Content';
 
-function ChatMessage({ align, backgroundColor, userName, message, dateTime }) {
+function ChatMessage({align, backgroundColor, userName, message, dateTime}) {
+  const locale = 'en-US'; // TOOD: receber vindo do settings
+  const messageTime = new Date(dateTime).toLocaleTimeString(locale, {
+    timeStyle: 'short',
+    hour12: false, // TOOD: receber vindo do settings
+  });
+
   return (
     <MessageRow left={align === 'left'}>
       <Message backgroundColor={backgroundColor}>
@@ -14,7 +20,7 @@ function ChatMessage({ align, backgroundColor, userName, message, dateTime }) {
           <Typography variant="body2">{message}</Typography>
         </MessageContent>
         <MessageTime>
-          <Typography variant="caption">{dateTime}</Typography>
+          <Typography variant="caption">{messageTime}</Typography>
         </MessageTime>
       </Message>
     </MessageRow>
