@@ -1,12 +1,12 @@
 import React, {useCallback, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import Screen from '../commons/components/Screen/Screen';
+import Screen from 'commons/components/Screen/Screen';
+import {actions as messagesActions, selectors as messagesSelectors} from 'redux/modules/messages';
+import {selectors as userSettingsSelectors} from 'redux/modules/userSettings';
+
 import ChatMessage from './components/ChatMessage/ChatMessage';
 import {SendMessage} from './components/SendMessage/SendMessage';
-
-import {actions as messagesActions, selectors as messagesSelectors} from '../redux/modules/messages';
-import {selectors as userSettingsSelectors} from '../redux/modules/userSettings';
 
 function Chat() {
   const dispatch = useDispatch();

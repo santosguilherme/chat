@@ -7,8 +7,8 @@ import AppBar from '@material-ui/core/AppBar';
 
 import 'typeface-roboto';
 
-import Chat from './Chat/Chat';
-import Settings from './Settings/Settings';
+import Chat from 'features/Chat/Chat';
+import Settings from 'features/Settings/Settings';
 
 const GlobalStyle = createGlobalStyle`
   body {

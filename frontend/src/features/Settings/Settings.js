@@ -12,9 +12,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
-import { actions, selectors } from '../redux/modules/userSettings';
-
-import Screen from '../commons/components/Screen/Screen';
+import { actions, selectors } from 'redux/modules/userSettings';
+import Screen from 'commons/components/Screen/Screen';
 
 const StyledTextField = styled(TextField)`
   margin-top: 0.5rem;
