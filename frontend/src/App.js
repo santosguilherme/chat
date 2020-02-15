@@ -17,13 +17,15 @@ const GlobalStyle = createGlobalStyle`
 
   div#root {
     height: 100vh;
+    max-height: 100vh;
   }
 `;
 
 const Container = styled.main`
   height: 100%;
-  display: flex;
-  flex-direction: column;
+
+  display: grid;
+  grid-template-rows: min-content auto;
 `;
 
 
@@ -31,8 +33,7 @@ const Header = styled(AppBar)`
 `;
 
 const Body = styled.div`
-  flex: 1;
-  overflow: auto;
+  overflow-y: auto;
 `;
 
 const tabs = {
