@@ -7,7 +7,8 @@ import {MessageContent, MessageTime} from './styles/Content';
 
 function ChatMessage({align, backgroundColor, userName, message, dateTime}) {
   const locale = 'en-US'; // TOOD: receber vindo do settings
-  const messageTime = new Date(dateTime).toLocaleTimeString(locale, {
+  const date = new Date(dateTime);
+  const messageTime = date.toLocaleTimeString(locale, {
     timeStyle: 'short',
     hour12: false, // TOOD: receber vindo do settings
   });
@@ -20,7 +21,7 @@ function ChatMessage({align, backgroundColor, userName, message, dateTime}) {
           <Typography variant="body2">{message}</Typography>
         </MessageContent>
         <MessageTime>
-          <Typography variant="caption">{messageTime}</Typography>
+          <Typography variant="caption" title={date.toLocaleString()}>{messageTime}</Typography>
         </MessageTime>
       </Message>
     </MessageRow>
