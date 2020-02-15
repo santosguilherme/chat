@@ -1,11 +1,5 @@
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-
-export const Container = styled.div`
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-`;
 
 const backgroundColorCSS = ({ backgroundColor }) => {
   return backgroundColor && css`
@@ -13,10 +7,17 @@ const backgroundColorCSS = ({ backgroundColor }) => {
   `;
 };
 
+export const Container = styled.div`
+  height: 100%;
+
+  display: grid;
+  grid-template-rows: auto min-content;
+`;
+
 export const Content = styled.div`
   padding: 1rem;
-  flex: 1;
-  overflow: auto;
+  overflow-y: auto;
+  align-content: ${({ alignContent }) => alignContent};
 
   display: grid;
   grid-row-gap: 1rem;
@@ -24,6 +25,14 @@ export const Content = styled.div`
 
   ${backgroundColorCSS};
 `;
+
+Content.defaultProps = {
+  alignContent: 'start',
+};
+
+Content.propTypes = {
+  alignContent: PropTypes.oneOf(['start', 'end']),
+};
 
 export const Footer = styled.div`
   padding: 1rem;
