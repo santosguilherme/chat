@@ -21,7 +21,8 @@ export const MessageRow = styled.div`
 `;
 
 export const Message = styled(Paper)`
-  display: flex;
+  display: grid;
+  grid-template-columns: auto min-content;
 
   ${backgroundColorCSS};
 `;
