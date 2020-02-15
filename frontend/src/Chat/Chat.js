@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import styled from 'styled-components';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
@@ -6,6 +6,9 @@ import SendRoundedIcon from '@material-ui/icons/SendRounded';
 
 import Screen from '../commons/components/Screen/Screen';
 import ChatMessage from '../commons/components/ChatMessage/ChatMessage';
+import {actions as messagesActions, selectors as messagesSelectors} from '../redux/modules/messages';
+import {selectors as userSettingsSelectors} from '../redux/modules/userSettings';
+import {useDispatch, useSelector} from 'react-redux';
 
 const StyledTextField = styled(TextField)`
   background-color: #fff;
@@ -27,58 +30,61 @@ const SendMessageGrid = styled.div`
 `;
 
 export default function Chat() {
-  const messages = [
-    {
-      id: 1,
-      userName: 'Guest',
-      message: 'Want to bang tonight?',
-      date: '12/01/2020',
+  const dispatch = useDispatch();
+
+  const userName = useSelector(userSettingsSelectors.getUserName);
+  const messages = useSelector(messagesSelectors.getMessages);
+  const loggedUserId = useSelector(messagesSelectors.getUserId);
+  const [message, setMessage] = useState('');
+
+  const handleChangeMessage = useCallback(
+    (event) => setMessage(event.target.value),
+    []
+  );
+
+  const handleSendMessageClick = useCallback(
+    () => {
+      dispatch(messagesActions.sendMessage({ userName, text: message}));
+      setMessage('');
     },
-    {
-      id: 2,
-      userName: 'Guest',
-      message: 'Want to bang tonight?',
-      date: '12/01/2020',
-    },
-    {
-      id: 3,
-      userName: 'Guest',
-      message: 'Want to bang tonight?',
-      date: '12/01/2020',
-    },
-    {
-      id: 4,
-      userName: 'Guest',
-      message: 'Want to bang tonight?',
-      date: '12/01/2020',
-    }
-  ];
-  // TODO: ul e li
+    [dispatch, message, userName]
+  );
+
   return (
     <Screen>
       {({Content, Footer}) => (
         <>
-          <Content backgroundColor="#E5DDD5">
-            {messages.map(({id, userName, message, date}) => (
+          <Content backgroundColor="#E5DDD5" alignContent="end">
+            {messages.map(({id, userId, userName, text, dateTime}) => (
               <ChatMessage
                 key={id}
-                userName={userName}
-                message={message}
-                dateTime={date}
+                align={(loggedUserId === userId) ? 'left' : 'right'}
+                backgroundColor={(loggedUserId === userId) ? '#DCF8C6' : undefined}
+                userName={(loggedUserId !== userId) ? userName : undefined}
+                message={text}
+                dateTime={dateTime}
               />
             ))}
-            <ChatMessage
-              align="left"
-              backgroundColor="#DCF8C6"
-              message="What?"
-              dateTime="25/05/1992"
-            />
+            {false && (
+              <ChatMessage
+                align="left"
+                backgroundColor="#DCF8C6"
+                message="What?"
+                dateTime="25/05/1992"
+              />
+            )}
           </Content>
           <Footer backgroundColor="#f0f0f0">
             <SendMessageGrid>
-              <StyledTextField id="filled-basic" placeholder="Enter message" variant="outlined" fullWidth/>
+              <StyledTextField
+                id="filled-basic"
+                placeholder="Enter message"
+                variant="outlined"
+                value={message}
+                onChange={handleChangeMessage}
+                fullWidth/>
               <SendMessageButton>
-                <IconButton aria-label="delete">
+                <IconButton aria-label="delete" onClick={handleSendMessageClick} disabled={!message.length}>
                   <SendRoundedIcon/>
                 </IconButton>
               </SendMessageButton>
