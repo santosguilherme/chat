@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
@@ -15,8 +15,26 @@ import Button from '@material-ui/core/Button';
 import { actions, selectors } from 'redux/modules/userSettings';
 import Screen from 'commons/components/Screen/Screen';
 
+const maxWidthCSS = () => {
+  return css`
+    @media screen and (min-width: 768px) {
+      max-width: 544px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      max-width: 440px;
+    }
+  `;
+};
+
 const StyledTextField = styled(TextField)`
   margin-top: 0.5rem;
+
+  ${maxWidthCSS};
+`;
+
+const ButtonContent = styled.div`
+  ${maxWidthCSS};
 `;
 
 function Settings() {
@@ -63,7 +81,7 @@ function Settings() {
       {({ Content, Footer }) => (
         <>
           <Content>
-            <StyledTextField value={userName} onChange={handleChangeUserName} label="User name" required variant="outlined" />
+            <StyledTextField value={userName} onChange={handleChangeUserName} label="User name" required variant="outlined" fullWidth/>
             <FormControl component="fieldset">
               <FormLabel component="legend">Interface color</FormLabel>
               <RadioGroup row name="interfaceColor" value={interfaceColor} onChange={handleChangeInterfaceColor}>
@@ -85,14 +103,16 @@ function Settings() {
                 <FormControlLabel value={false} control={<Radio/>} label="Off"/>
               </RadioGroup>
             </FormControl>
-            <TextField id="select" label="Language" value={language} onChange={handleChangeLanguage} variant="outlined"
+            <StyledTextField id="select" label="Language" value={language} onChange={handleChangeLanguage} variant="outlined"
                        select>
               <MenuItem value="enUS">English</MenuItem>
               <MenuItem value="ptBR">Português</MenuItem>
-            </TextField>
+            </StyledTextField>
           </Content>
           <Footer>
-            <Button variant="contained" fullWidth onClick={handleResetDefaultsClick}>Reset to defaults</Button>
+            <ButtonContent>
+              <Button variant="contained" fullWidth onClick={handleResetDefaultsClick}>Reset to defaults</Button>
+            </ButtonContent>
           </Footer>
         </>
       )}
