@@ -1,46 +1,53 @@
-import styled from 'styled-components';
-import IconButton from '@material-ui/core/IconButton';
+import React, {useCallback} from 'react';
+import PropTypes from 'prop-types';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
-import * as PropTypes from 'prop-types';
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
 
-const StyledTextField = styled(TextField)`
-  background-color: #fff;
-  grid-area: input;
-`;
-const SendMessageButton = styled.div`
-  grid-area: button;
-  align-self: center;
-`;
-const SendMessageGrid = styled.div`
-  display: grid;
-  grid-column-gap: 1rem;
-  grid-auto-columns: min-content;
-  grid-template-columns: auto min-content;
-  grid-template-areas:
-    "input button";
-`;
+import {isEmpty} from 'commons/utils/string/isEmpty';
 
-export function SendMessage(props) {
-    return <SendMessageGrid>
-        <StyledTextField
-            id="filled-basic"
-            placeholder="Enter message"
-            variant="outlined"
-            value={props.value}
-            onChange={props.onChange}
-            fullWidth/>
-        <SendMessageButton>
-            <IconButton aria-label="delete" onClick={props.onClick} disabled={!props.value.length}>
-                <SendRoundedIcon/>
-            </IconButton>
-        </SendMessageButton>
-    </SendMessageGrid>;
+import {SendMessageGrid} from './styles/Container';
+import {StyledTextField} from './styles/Input';
+import {StyledButton} from './styles/Button';
+
+export function SendMessage({sendOnCtrlEnter, value, onSend, onChange}) {
+  const valueIsEmpty = isEmpty(value);
+
+  const handleKeyDown = useCallback(
+    (event) => {
+      const isCtrlCmdHold = event.ctrlKey || event.metaKey;
+      const isEnterKey = event.key === 'Enter';
+
+      if (sendOnCtrlEnter && !valueIsEmpty && isEnterKey && isCtrlCmdHold) {
+        onSend();
+      }
+    },
+    [sendOnCtrlEnter, valueIsEmpty, onSend]
+  );
+
+  return (
+    <SendMessageGrid>
+      <StyledTextField
+        placeholder="Enter message"
+        variant="outlined"
+        value={value}
+        onChange={onChange}
+        onKeyDown={handleKeyDown}
+        fullWidth
+      />
+      <StyledButton onClick={onSend} disabled={valueIsEmpty}>
+        <SendRoundedIcon/>
+      </StyledButton>
+    </SendMessageGrid>
+  );
 }
 
+SendMessage.defaultProps = {
+  onSend: () => {
+  },
+};
+
 SendMessage.propTypes = {
-    value: PropTypes.string,
-    onChange: PropTypes.func,
-    onClick: PropTypes.func
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onSend: PropTypes.func,
+  sendOnCtrlEnter: PropTypes.bool.isRequired
 };

@@ -13,6 +13,7 @@ function Chat() {
 
   const userName = useSelector(userSettingsSelectors.getUserName);
   const hour12 = useSelector(userSettingsSelectors.getHour12);
+  const enterMode = useSelector(userSettingsSelectors.getEnterMode);
 
   const messages = useSelector(messagesSelectors.getMessages);
   const loggedUserId = useSelector(messagesSelectors.getUserId);
@@ -73,7 +74,7 @@ function Chat() {
             {messages.map(renderChatMessage)}
           </Content>
           <Footer backgroundColor="#f0f0f0">
-            <SendMessage value={message} onChange={handleChangeMessage} onClick={handleSendMessageClick}/>
+            <SendMessage value={message} onChange={handleChangeMessage} onSend={handleSendMessageClick} sendOnCtrlEnter={enterMode}/>
           </Footer>
         </>
       )}
