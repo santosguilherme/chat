@@ -40,7 +40,7 @@ function Chat() {
   const renderLoggedUserMessage = ({ id, text, dateTime}, props) => (
     <ChatMessage
       key={id}
-      align="left"
+      align="right"
       backgroundColor="#DCF8C6"
       message={text}
       dateTime={dateTime}

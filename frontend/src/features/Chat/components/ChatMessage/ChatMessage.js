@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 
 import {Message, MessageRow} from './styles/Container';
 import {MessageContent, MessageTime} from './styles/Content';
+import {Tail} from './styles/Tail';
 
 function ChatMessage({align, backgroundColor, userName, message, dateTime, hour12}) {
   const locale = 'en-US'; // TOOD: receber vindo do settings
@@ -15,7 +16,8 @@ function ChatMessage({align, backgroundColor, userName, message, dateTime, hour1
 
   return (
     <MessageRow left={align === 'left'}>
-      <Message backgroundColor={backgroundColor}>
+      <Message backgroundColor={backgroundColor} align={align}>
+        <Tail backgroundColor={backgroundColor} align={align} />
         <MessageContent>
           <Typography variant="subtitle2">{userName}</Typography>
           <Typography variant="body2">{message}</Typography>
@@ -29,7 +31,8 @@ function ChatMessage({align, backgroundColor, userName, message, dateTime, hour1
 }
 
 ChatMessage.defaultProps = {
-  align: 'right',
+  align: 'left',
+  backgroundColor: '#fff',
 };
 
 ChatMessage.propTypes = {
