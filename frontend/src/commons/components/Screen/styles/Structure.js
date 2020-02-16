@@ -28,10 +28,12 @@ export const Content = styled.div`
 
 Content.defaultProps = {
   alignContent: 'start',
+  backgroundColor: '#fff',
 };
 
 Content.propTypes = {
   alignContent: PropTypes.oneOf(['start', 'end']),
+  backgroundColor: PropTypes.string,
 };
 
 export const Footer = styled.div`
@@ -39,3 +41,11 @@ export const Footer = styled.div`
 
   ${backgroundColorCSS};
 `;
+
+Footer.defaultProps = {
+  backgroundColor: '#fff',
+};
+
+Footer.propTypes = {
+  backgroundColor: PropTypes.string,
+};
