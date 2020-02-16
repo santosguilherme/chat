@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import styled, {createGlobalStyle} from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
+import Badge from '@material-ui/core/Badge';
 
 import 'typeface-roboto';
 
 import Chat from 'features/Chat/Chat';
 import Settings from 'features/Settings/Settings';
+import {useDispatch, useSelector} from 'react-redux';
+import {actions as messagesActions, selectors as messagesSelectors} from '../redux/modules/messages';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -87,10 +90,24 @@ const tabs = {
 };
 
 function App() {
+  const dispatch = useDispatch();
+  const unreadMessages = useSelector(messagesSelectors.getUnreadMessages);
+
   const [activeTab, setActiveTab] = React.useState(0);
+
+
+  const isChatTabActive = () => {
+    return activeTab === 0;
+  };
+
+  const resetUnreadMessages = useCallback(
+    () => dispatch(messagesActions.resetUnreadMessages()),
+    [dispatch]
+  );
 
   const handleChangeTab = (event, newValue) => {
     setActiveTab(newValue);
+    resetUnreadMessages();
   };
 
   return (
@@ -102,7 +119,11 @@ function App() {
         <Content>
           <Header position="static">
             <Tabs value={activeTab} onChange={handleChangeTab}>
-              <Tab label="Chat"/>
+              <Tab label={
+                <Badge badgeContent={isChatTabActive() ? 0 : unreadMessages} color="secondary">
+                  Chat
+                </Badge>
+              }/>
               <Tab label="Settings"/>
             </Tabs>
           </Header>
