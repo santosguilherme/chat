@@ -2,7 +2,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Badge from '@material-ui/core/Badge';
 import React, {useCallback} from 'react';
-import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -10,16 +9,9 @@ import Chat from 'features/Chat/Chat';
 import Settings from 'features/Settings/Settings';
 import {actions as messagesActions, selectors as messagesSelectors} from 'redux/modules/messages';
 
-const TabsContent = styled.div`
-  height: 100%;
+import {TabBody} from './styles/Content';
+import {TabsContent} from './styles/Container';
 
-  display: grid;
-  grid-template-rows: min-content auto;
-`;
-
-const Body = styled.div`
-  overflow-y: auto;
-`;
 const tabs = {
   0: <Chat/>,
   1: <Settings/>,
@@ -57,9 +49,9 @@ function AppTabs() {
           <Tab label="Settings"/>
         </Tabs>
       </AppBar>
-      <Body>
+      <TabBody>
         {tabs[activeTab]}
-      </Body>
+      </TabBody>
     </TabsContent>
   );
 }
