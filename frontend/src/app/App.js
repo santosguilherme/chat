@@ -1,137 +1,35 @@
-import React, {useCallback} from 'react';
-import styled, {createGlobalStyle} from 'styled-components';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import AppBar from '@material-ui/core/AppBar';
-import Badge from '@material-ui/core/Badge';
-
-import 'typeface-roboto';
-
-import Chat from 'features/Chat/Chat';
-import Settings from 'features/Settings/Settings';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {actions as messagesActions, selectors as messagesSelectors} from '../redux/modules/messages';
+import {actions as appActions, selectors as appSelectors} from 'redux/modules/app';
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    overflow: hidden;
-  }
-
-  div#root {
-    height: 100vh;
-    max-height: 100vh;
-  }
-`;
-
-const Container = styled.main`
-  height: 100%;
-
-  @media screen and (min-width: 768px) {
-    background-color: #ccc;
-
-    display: grid;
-    grid-template-rows: 1fr 1fr 4fr 4fr 1fr;
-    grid-template-columns: 1fr 6fr 1fr;
-  }
-
-  @media screen and (min-width: 1024px) {
-    grid-template-rows: 1fr 1fr 3fr 3fr 1fr;
-  }
-`;
-
-const BackgroudPrimary = styled.div`
-  display: none;
-
-  @media screen and (min-width: 768px) {
-    display: block;
-    background-color: yellow;
-    grid-area: 1 / 1 / 3 / 4;
-  }
-`;
-
-const BackgroudSecondary = styled.div`
-  display: none;
-
-  @media screen and (min-width: 768px) {
-    display: block;
-    background-color: greenyellow;
-    grid-area: 3 / 1 / 6 / 4;
-  }
-`;
-
-const Content = styled.main`
-  height: 100%;
-
-  display: grid;
-  grid-template-rows: min-content auto;
-
-  @media screen and (min-width: 768px) {
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,.06), 0 2px 5px 0 rgba(0,0,0,.2);
-    z-index: 100;
-
-    grid-column: 2;
-    grid-row: 2 / 5;
-  }
-
-`;
-
-
-const Header = styled(AppBar)`
-`;
-
-const Body = styled.div`
-  overflow-y: auto;
-`;
-
-const tabs = {
-  0: <Chat/>,
-  1: <Settings/>,
-};
+import Loading from './components/Loading/Loading';
+import AppTabs from './components/AppTabs/AppTabs';
+import {BackgroudPrimary, BackgroudSecondary} from './styles/Background';
+import {Container, Content} from './styles/Container';
+import 'typeface-roboto';
 
 function App() {
   const dispatch = useDispatch();
-  const unreadMessages = useSelector(messagesSelectors.getUnreadMessages);
 
-  const [activeTab, setActiveTab] = React.useState(0);
+  const isWebsocketConnected = useSelector(appSelectors.getWebsocketConnected);
 
-
-  const isChatTabActive = () => {
-    return activeTab === 0;
-  };
-
-  const resetUnreadMessages = useCallback(
-    () => dispatch(messagesActions.resetUnreadMessages()),
-    [dispatch]
-  );
-
-  const handleChangeTab = (event, newValue) => {
-    setActiveTab(newValue);
-    resetUnreadMessages();
-  };
+  useEffect(() => {
+    dispatch(appActions.connectWebsocket());
+  }, [dispatch]);
 
   return (
     <>
-      <CssBaseline/>
-      <GlobalStyle/>
+
       <Container>
-        <BackgroudPrimary />
+        <BackgroudPrimary/>
         <Content>
-          <Header position="static">
-            <Tabs value={activeTab} onChange={handleChangeTab}>
-              <Tab label={
-                <Badge badgeContent={isChatTabActive() ? 0 : unreadMessages} color="secondary">
-                  Chat
-                </Badge>
-              }/>
-              <Tab label="Settings"/>
-            </Tabs>
-          </Header>
-          <Body>
-            {tabs[activeTab]}
-          </Body>
+          {
+            isWebsocketConnected
+              ? <AppTabs/>
+              : <Loading/>
+          }
         </Content>
-        <BackgroudSecondary />
+        <BackgroudSecondary/>
       </Container>
     </>
   );

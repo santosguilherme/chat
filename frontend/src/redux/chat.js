@@ -1,9 +1,10 @@
-import {take, put, call, fork} from 'redux-saga/effects';
+import {take, put, call, fork, delay} from 'redux-saga/effects';
 import {eventChannel} from 'redux-saga';
 
 import io from 'socket.io-client';
 
 import {actions} from './modules/messages';
+import {actions as appActions} from './modules/app';
 
 function* write(socket) {
   while (true) {
@@ -26,8 +27,8 @@ function connect() {
   });
 }
 
-export function* subscribe(socket) {
-  return new eventChannel(emit => {
+export function subscribe(socket) {
+  return eventChannel(emit => {
     const update = message => {
       return emit(actions.updateMessages(message));
     };
@@ -49,8 +50,8 @@ function* read(socket) {
   }
 }
 
-function* join(socket) {
-  return new eventChannel(emit => {
+function join(socket) {
+  return eventChannel(emit => {
     const update = id => {
       return emit(actions.chatJoin(id));
     };
@@ -73,11 +74,15 @@ function* readJoin(socket) {
 }
 
 export function* flow() {
-  //yield take(GET_TODOS);
+  yield take(appActions.connectWebsocket);
   const socket = yield call(connect);
+
   yield fork(readJoin, socket);
   yield fork(read, socket);
   yield fork(write, socket);
+
+  yield delay(1000);
+  yield put(appActions.setWebsocketConnected());
 }
 
 export default function* rootSaga() {
