@@ -41,7 +41,7 @@ function Chat() {
     <ChatMessage
       key={id}
       align="right"
-      backgroundColor="#DCF8C6"
+      backgroundColor="chat.loggedMessage"
       message={text}
       dateTime={dateTime}
       {...props}
@@ -70,10 +70,10 @@ function Chat() {
     <Screen>
       {({Content, Footer}) => (
         <>
-          <Content backgroundColor="#E5DDD5" alignContent="end">
+          <Content backgroundColor="chat.content" alignContent="end">
             {messages.map(renderChatMessage)}
           </Content>
-          <Footer backgroundColor="#f0f0f0">
+          <Footer backgroundColor="chat.send">
             <SendMessage value={message} onChange={handleChangeMessage} onSend={handleSendMessageClick} sendOnCtrlEnter={enterMode}/>
           </Footer>
         </>

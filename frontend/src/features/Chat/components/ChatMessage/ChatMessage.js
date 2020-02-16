@@ -32,7 +32,7 @@ function ChatMessage({align, backgroundColor, userName, message, dateTime, hour1
 
 ChatMessage.defaultProps = {
   align: 'left',
-  backgroundColor: '#fff',
+  backgroundColor: 'background.paper',
 };
 
 ChatMessage.propTypes = {

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.main`
   height: 100%;
+  color: ${({ theme }) => theme.palette.text.primary};
 
   @media screen and (min-width: 768px) {
     background-color: #ccc;

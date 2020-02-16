@@ -1,5 +1,7 @@
 import styled, {css} from 'styled-components';
 
+import get from 'commons/utils/object/get';
+
 const horizontalPositionCSS = ({left}) => {
   return !left && css`
     justify-content: flex-end;
@@ -7,9 +9,9 @@ const horizontalPositionCSS = ({left}) => {
 };
 
 // TODO: reuse
-const backgroundColorCSS = ({backgroundColor}) => {
-  return backgroundColor && css`
-    background-color: ${backgroundColor};
+const backgroundColorCSS = ({theme, backgroundColor}) => {
+  return css`
+    background-color: ${get(backgroundColor, theme.palette)};
   `;
 };
 
