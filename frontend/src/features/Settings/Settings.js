@@ -15,13 +15,15 @@ import { actions, selectors } from 'redux/modules/userSettings';
 import Screen from 'commons/components/Screen/Screen';
 
 const maxWidthCSS = () => css`
-    @media screen and (min-width: 768px) {
+  ${({ theme }) => `
+    ${theme.breakpoints.up('sm')} {
       max-width: 544px;
     }
 
-    @media screen and (min-width: 1024px) {
+    ${theme.breakpoints.up('md')} {
       max-width: 440px;
     }
+  `}
   `;
 
 const StyledTextField = styled(TextField)`
