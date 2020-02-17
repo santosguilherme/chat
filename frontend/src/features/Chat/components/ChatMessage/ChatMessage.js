@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { FormattedTime, useIntl } from 'react-intl';
@@ -46,4 +46,4 @@ ChatMessage.propTypes = {
   userName: PropTypes.string,
 };
 
-export default ChatMessage;
+export default memo(ChatMessage);

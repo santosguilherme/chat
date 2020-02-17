@@ -23,6 +23,11 @@ const localeMessages = {
   'pt-BR': ptBR,
 };
 
+const themes = {
+  light: theme,
+  dark: darkTheme,
+};
+
 function App() {
   const dispatch = useDispatch();
 
@@ -34,7 +39,7 @@ function App() {
     dispatch(appActions.connectWebsocket());
   }, [dispatch]);
 
-  const selectedTheme = interfaceColor === 'light' ? theme : darkTheme;
+  const selectedTheme = themes[interfaceColor];
 
   return (
     <IntlProvider locale={language} messages={localeMessages[language]}>

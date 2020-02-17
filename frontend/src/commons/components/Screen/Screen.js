@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import { Container, Content, Footer } from './styles/Structure';
@@ -15,4 +15,4 @@ Screen.propTypes = {
   children: PropTypes.func.isRequired,
 };
 
-export default Screen;
+export default memo(Screen);

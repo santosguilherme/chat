@@ -6,7 +6,7 @@ import { actions as messagesActions, selectors as messagesSelectors } from 'redu
 import { selectors as userSettingsSelectors } from 'redux/modules/userSettings';
 
 import ChatMessage from './components/ChatMessage/ChatMessage';
-import { SendMessage } from './components/SendMessage/SendMessage';
+import SendMessage from './components/SendMessage/SendMessage';
 
 function Chat() {
   const dispatch = useDispatch();
@@ -33,7 +33,10 @@ function Chat() {
     [dispatch, message, userName],
   );
 
-  const isLoggedUserMessage = messageUserId => loggedUserId === messageUserId;
+  const isLoggedUserMessage = useCallback(
+    messageUserId => loggedUserId === messageUserId,
+    [loggedUserId],
+  );
 
   const renderLoggedUserMessage = (loggedMessage, props) => {
     const { id, text, dateTime } = loggedMessage;
@@ -66,14 +69,16 @@ function Chat() {
     );
   };
 
-  // TODO: useMemo?
-  const renderChatMessage = chatMessage => {
-    const { userId } = chatMessage;
+  const renderChatMessage = useCallback(
+    chatMessage => {
+      const { userId } = chatMessage;
 
-    return isLoggedUserMessage(userId)
-      ? renderLoggedUserMessage(chatMessage, { hour12 })
-      : renderNonLoggedUserMessage(chatMessage, { hour12 });
-  };
+      return isLoggedUserMessage(userId)
+        ? renderLoggedUserMessage(chatMessage, { hour12 })
+        : renderNonLoggedUserMessage(chatMessage, { hour12 });
+    },
+    [hour12, isLoggedUserMessage],
+  );
 
   return (
     <Screen>

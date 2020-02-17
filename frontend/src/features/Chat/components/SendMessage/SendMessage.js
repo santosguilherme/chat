@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import { useIntl } from 'react-intl';
@@ -9,11 +9,11 @@ import { SendMessageGrid } from './styles/Container';
 import { StyledTextField } from './styles/Input';
 import { StyledButton } from './styles/Button';
 
-export function SendMessage({
+function SendMessage({
   sendOnCtrlEnter, value, onSend, onChange,
 }) {
   const intl = useIntl();
-  const valueIsEmpty = isEmpty(value);
+  const valueIsEmpty = useMemo(() => isEmpty(value), [value]);
 
   const handleKeyDown = useCallback(
     event => {
@@ -55,3 +55,5 @@ SendMessage.propTypes = {
   sendOnCtrlEnter: PropTypes.bool.isRequired,
   value: PropTypes.string,
 };
+
+export default memo(SendMessage);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { LoadingContent } from './styles/Container';
@@ -11,4 +11,4 @@ function Loading() {
   );
 }
 
-export default Loading;
+export default memo(Loading);
