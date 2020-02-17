@@ -34,7 +34,6 @@ function AppTabs() {
     resetUnreadMessages();
   };
 
-  // FIXME: badge nao ta aparecendo
   return (
     <TabsContent>
       <AppBar position="static">
