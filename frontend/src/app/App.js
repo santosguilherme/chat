@@ -4,7 +4,9 @@ import { IntlProvider } from 'react-intl';
 import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
+import GlobalStyle from 'commons/components/GlobalStyle/GlobalStyle';
 import { actions as appActions, selectors as appSelectors } from 'redux/modules/app';
 import { selectors as userSettingsSelectors } from 'redux/modules/userSettings';
 import theme, { darkTheme } from 'commons/styles/theme';
@@ -46,17 +48,21 @@ function App() {
       <NoSsr>
         <MuiThemeProvider theme={selectedTheme}>
           <ThemeProvider theme={selectedTheme}>
-            <Container>
-              <BackgroudPrimary />
-              <Content>
-                {
-                  isWebsocketConnected
-                    ? <AppTabs />
-                    : <Loading />
-                }
-              </Content>
-              <BackgroudSecondary />
-            </Container>
+            <>
+              <CssBaseline />
+              <GlobalStyle />
+              <Container>
+                <BackgroudPrimary />
+                <Content>
+                  {
+                    isWebsocketConnected
+                      ? <AppTabs />
+                      : <Loading />
+                  }
+                </Content>
+                <BackgroudSecondary />
+              </Container>
+            </>
           </ThemeProvider>
         </MuiThemeProvider>
       </NoSsr>
