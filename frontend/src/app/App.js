@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { ThemeProvider } from 'styled-components';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import {ThemeProvider} from 'styled-components';
+import {IntlProvider} from 'react-intl';
+import {ThemeProvider as MuiThemeProvider} from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 
 import {actions as appActions, selectors as appSelectors} from 'redux/modules/app';
 import {selectors as userSettingsSelectors} from 'redux/modules/userSettings';
-import theme, { darkTheme } from 'commons/styles/theme';
+import theme, {darkTheme} from 'commons/styles/theme';
 
 import Loading from './components/Loading/Loading';
 import AppTabs from './components/AppTabs/AppTabs';
@@ -21,6 +22,7 @@ function App() {
 
   const isWebsocketConnected = useSelector(appSelectors.getWebsocketConnected);
   const interfaceColor = useSelector(userSettingsSelectors.getInterfaceColor);
+  const language = useSelector(userSettingsSelectors.getLanguage);
 
   useEffect(() => {
     dispatch(appActions.connectWebsocket());
@@ -28,24 +30,29 @@ function App() {
 
   const selectedTheme = interfaceColor === 'light' ? theme : darkTheme;
 
+  // TODO: otimizar
+  const messages = require(`../locale/${language}.json`);
+
   return (
-    <NoSsr>
-      <MuiThemeProvider theme={selectedTheme}>
-        <ThemeProvider theme={selectedTheme}>
-          <Container>
-            <BackgroudPrimary/>
-            <Content>
-              {
-                isWebsocketConnected
-                  ? <AppTabs/>
-                  : <Loading/>
-              }
-            </Content>
-            <BackgroudSecondary/>
-          </Container>
-        </ThemeProvider>
-      </MuiThemeProvider>
-    </NoSsr>
+    <IntlProvider locale={language} messages={messages}>
+      <NoSsr>
+        <MuiThemeProvider theme={selectedTheme}>
+          <ThemeProvider theme={selectedTheme}>
+            <Container>
+              <BackgroudPrimary/>
+              <Content>
+                {
+                  isWebsocketConnected
+                    ? <AppTabs/>
+                    : <Loading/>
+                }
+              </Content>
+              <BackgroudSecondary/>
+            </Container>
+          </ThemeProvider>
+        </MuiThemeProvider>
+      </NoSsr>
+    </IntlProvider>
   );
 }
 

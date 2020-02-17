@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, {useCallback} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
-import styled, { css } from 'styled-components';
+import styled, {css} from 'styled-components';
 
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
@@ -12,8 +12,9 @@ import FormLabel from '@material-ui/core/FormLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
-import { actions, selectors } from 'redux/modules/userSettings';
+import {actions, selectors} from 'redux/modules/userSettings';
 import Screen from 'commons/components/Screen/Screen';
+import {FormattedMessage, useIntl} from 'react-intl';
 
 const maxWidthCSS = () => {
   return css`
@@ -37,7 +38,10 @@ const ButtonContent = styled.div`
   ${maxWidthCSS};
 `;
 
+const availableLanguages = ['en-US', 'pt-BR'];
+
 function Settings() {
+  const intl = useIntl();
   const dispatch = useDispatch();
 
   const userName = useSelector(selectors.getUserName);
@@ -78,40 +82,92 @@ function Settings() {
 
   return (
     <Screen>
-      {({ Content, Footer }) => (
+      {({Content, Footer}) => (
         <>
           <Content>
-            <StyledTextField value={userName} onChange={handleChangeUserName} label="User name" required variant="outlined" fullWidth/>
+            <StyledTextField
+              value={userName}
+              onChange={handleChangeUserName}
+              label={intl.formatMessage({id: 'SETTINGS.USER_NAME.INPUT.LABEL'})}
+              required
+              variant="outlined"
+              fullWidth
+            />
             <FormControl component="fieldset">
-              <FormLabel component="legend">Interface color</FormLabel>
+              <FormLabel component="legend">
+                <FormattedMessage id="SETTINGS.UI_COLOR.INPUT.LABEL"/>
+              </FormLabel>
               <RadioGroup row name="interfaceColor" value={interfaceColor} onChange={handleChangeInterfaceColor}>
-                <FormControlLabel value="light" control={<Radio/>} label="Light"/>
-                <FormControlLabel value="dark" control={<Radio/>} label="Dark"/>
+                <FormControlLabel
+                  value="light"
+                  control={<Radio/>}
+                  label={intl.formatMessage({id: 'SETTINGS.UI_COLOR.LIGHT.LABEL'})}
+                />
+                <FormControlLabel
+                  value="dark"
+                  control={<Radio/>}
+                  label={intl.formatMessage({id: 'SETTINGS.UI_COLOR.DARK.LABEL'})}
+                />
               </RadioGroup>
             </FormControl>
             <FormControl component="fieldset">
-              <FormLabel component="legend">Clock display</FormLabel>
+              <FormLabel component="legend">
+                <FormattedMessage id="SETTINGS.CLOCK.INPUT.LABEL"/>
+              </FormLabel>
               <RadioGroup row name="clockDisplay" value={hour12} onChange={handleChangeHour12}>
-                <FormControlLabel value={true} control={<Radio/>} label="12 hours"/>
-                <FormControlLabel value={false} control={<Radio/>} label="24 hours"/>
+                <FormControlLabel
+                  value={true}
+                  control={<Radio/>}
+                  label={intl.formatMessage({id: 'SETTINGS.CLOCK.12.LABEL'})}
+                />
+                <FormControlLabel
+                  value={false}
+                  control={<Radio/>}
+                  label={intl.formatMessage({id: 'SETTINGS.CLOCK.24.LABEL'})}
+                />
               </RadioGroup>
             </FormControl>
             <FormControl component="fieldset">
-              <FormLabel component="legend">Send messages on CTRL + ENTER</FormLabel>
+              <FormLabel component="legend">
+                <FormattedMessage id="SETTINGS.CTRL_ENTER.INPUT.LABEL" />
+              </FormLabel>
               <RadioGroup row name="enterMode" value={enterMode} onChange={handleChangeEnterMode}>
-                <FormControlLabel value={true} control={<Radio/>} label="On"/>
-                <FormControlLabel value={false} control={<Radio/>} label="Off"/>
+                <FormControlLabel
+                  value={true}
+                  control={<Radio/>}
+                  label={intl.formatMessage({id: 'SETTINGS.CTRL_ENTER.ON.LABEL'})}
+                />
+                <FormControlLabel
+                  value={false}
+                  control={<Radio/>}
+                  label={intl.formatMessage({id: 'SETTINGS.CTRL_ENTER.OFF.LABEL'})}
+                />
               </RadioGroup>
             </FormControl>
-            <StyledTextField id="select" label="Language" value={language} onChange={handleChangeLanguage} variant="outlined"
-                       select>
-              <MenuItem value="enUS">English</MenuItem>
-              <MenuItem value="ptBR">Português</MenuItem>
+            <StyledTextField
+              id="select"
+              label={intl.formatMessage({id: 'SETTINGS.LANGUAGE.INPUT.LABEL'})}
+              value={language}
+              onChange={handleChangeLanguage}
+              variant="outlined"
+              select
+            >
+              {availableLanguages.map(locale => (
+                <MenuItem value={locale} key={locale}>
+                  <FormattedMessage id={`SETTINGS.LANGUAGE.${locale.toUpperCase()}.LABEL`}/>
+                </MenuItem>
+              ))}
             </StyledTextField>
           </Content>
           <Footer>
             <ButtonContent>
-              <Button variant="contained" fullWidth onClick={handleResetDefaultsClick}>Reset to defaults</Button>
+              <Button
+                variant="contained"
+                fullWidth
+                onClick={handleResetDefaultsClick}
+              >
+                <FormattedMessage id="SETTINGS.RESET_BUTTON.TEXT" />
+              </Button>
             </ButtonContent>
           </Footer>
         </>

@@ -7,8 +7,10 @@ import {isEmpty} from 'commons/utils/string/isEmpty';
 import {SendMessageGrid} from './styles/Container';
 import {StyledTextField} from './styles/Input';
 import {StyledButton} from './styles/Button';
+import {useIntl} from 'react-intl';
 
 export function SendMessage({sendOnCtrlEnter, value, onSend, onChange}) {
+  const intl = useIntl();
   const valueIsEmpty = isEmpty(value);
 
   const handleKeyDown = useCallback(
@@ -26,7 +28,7 @@ export function SendMessage({sendOnCtrlEnter, value, onSend, onChange}) {
   return (
     <SendMessageGrid>
       <StyledTextField
-        placeholder="Enter message"
+        placeholder={intl.formatMessage({id: 'CHAT.SEND_MESSAGE.INPUT.PLACEHOLDER'})}
         variant="outlined"
         value={value}
         onChange={onChange}

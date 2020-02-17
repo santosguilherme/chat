@@ -43,7 +43,7 @@ const initialState = {
   interfaceColor: 'light',
   hour12: true,
   enterMode: false,
-  language: 'enUS',
+  language: 'en-US',
 };
 
 const createUpdateHandler = stateAttr => (state, action) => ({

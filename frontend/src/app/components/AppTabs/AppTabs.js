@@ -11,6 +11,7 @@ import {actions as messagesActions, selectors as messagesSelectors} from 'redux/
 
 import {TabBody} from './styles/Content';
 import {TabsContent} from './styles/Container';
+import {FormattedMessage} from 'react-intl';
 
 const tabs = {
   0: <Chat/>,
@@ -43,10 +44,10 @@ function AppTabs() {
         <Tabs value={activeTab} onChange={handleChangeTab}>
           <Tab label={
             <Badge badgeContent={isChatTabActive ? 0 : unreadMessages} color="secondary">
-              Chat
+              <FormattedMessage id="TABS.CHAT.LABEL" />
             </Badge>
           }/>
-          <Tab label="Settings"/>
+          <Tab label={<FormattedMessage id="TABS.SETTINGS.LABEL" />}/>
         </Tabs>
       </AppBar>
       <TabBody>

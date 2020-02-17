@@ -1,0 +1,26 @@
+{
+  "TABS.CHAT.LABEL": "Conversa",
+  "TABS.SETTINGS.LABEL": "Configurações",
+
+  "CHAT.SEND_MESSAGE.INPUT.PLACEHOLDER": "Enviar mensagem",
+
+  "SETTINGS.USER_NAME.INPUT.LABEL": "Nome do usuário",
+
+  "SETTINGS.UI_COLOR.INPUT.LABEL": "Cor da interface",
+  "SETTINGS.UI_COLOR.LIGHT.LABEL": "Claro",
+  "SETTINGS.UI_COLOR.DARK.LABEL": "Escuro",
+
+  "SETTINGS.CLOCK.INPUT.LABEL": "Modo do horário",
+  "SETTINGS.CLOCK.12.LABEL": "12 horas",
+  "SETTINGS.CLOCK.24.LABEL": "24 horas",
+
+  "SETTINGS.CTRL_ENTER.INPUT.LABEL": "Enviar mensagens com CTRL + ENTER",
+  "SETTINGS.CTRL_ENTER.ON.LABEL": "Ligado",
+  "SETTINGS.CTRL_ENTER.OFF.LABEL": "Desligado",
+
+  "SETTINGS.LANGUAGE.INPUT.LABEL": "Língua",
+  "SETTINGS.LANGUAGE.PT-BR.LABEL": "Português",
+  "SETTINGS.LANGUAGE.EN-US.LABEL": "English",
+
+  "SETTINGS.RESET_BUTTON.TEXT": "Redefinir configurações"
+}

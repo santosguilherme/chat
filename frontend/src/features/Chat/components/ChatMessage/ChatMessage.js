@@ -5,14 +5,11 @@ import Typography from '@material-ui/core/Typography';
 import {Message, MessageRow} from './styles/Container';
 import {MessageContent, MessageTime} from './styles/Content';
 import {Tail} from './styles/Tail';
+import {FormattedTime, useIntl} from 'react-intl';
 
 function ChatMessage({align, backgroundColor, userName, message, dateTime, hour12}) {
-  const locale = 'en-US'; // TOOD: receber vindo do settings
+  const intl = useIntl();
   const date = new Date(dateTime);
-  const messageTime = date.toLocaleTimeString(locale, {
-    timeStyle: 'short',
-    hour12
-  });
 
   return (
     <MessageRow left={align === 'left'}>
@@ -23,7 +20,9 @@ function ChatMessage({align, backgroundColor, userName, message, dateTime, hour1
           <Typography variant="body2">{message}</Typography>
         </MessageContent>
         <MessageTime>
-          <Typography variant="caption" title={date.toLocaleString()}>{messageTime}</Typography>
+          <Typography variant="caption" title={date.toLocaleString(intl.locale)}>
+            <FormattedTime value={date} hour12={hour12} />
+          </Typography>
         </MessageTime>
       </Message>
     </MessageRow>
