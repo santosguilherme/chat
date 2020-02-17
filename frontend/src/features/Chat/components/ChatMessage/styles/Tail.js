@@ -1,17 +1,13 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import get from 'commons/utils/object/get';
 
-const tailAlignCss = ({align}) => {
-  return css`
-    border-${align}: 10px solid transparent;
-    ${align}: -10px;
-  `;
-};
+const tailAlignCss = ({ align }) => css`
+  border-${align}: 10px solid transparent;
+  ${align}: -10px;
+`;
 
-const borderColorCSS = ({theme, backgroundColor}) => {
-  return get(backgroundColor, theme.palette);
-};
+const borderColorCSS = ({ theme, backgroundColor }) => get(backgroundColor, theme.palette);
 
 export const Tail = styled.span`
   position: absolute;

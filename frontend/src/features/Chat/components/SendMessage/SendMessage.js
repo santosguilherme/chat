@@ -1,20 +1,22 @@
-import React, {useCallback} from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
+import { useIntl } from 'react-intl';
 
-import {isEmpty} from 'commons/utils/string/isEmpty';
+import { isEmpty } from 'commons/utils/string/isEmpty';
 
-import {SendMessageGrid} from './styles/Container';
-import {StyledTextField} from './styles/Input';
-import {StyledButton} from './styles/Button';
-import {useIntl} from 'react-intl';
+import { SendMessageGrid } from './styles/Container';
+import { StyledTextField } from './styles/Input';
+import { StyledButton } from './styles/Button';
 
-export function SendMessage({sendOnCtrlEnter, value, onSend, onChange}) {
+export function SendMessage({
+  sendOnCtrlEnter, value, onSend, onChange,
+}) {
   const intl = useIntl();
   const valueIsEmpty = isEmpty(value);
 
   const handleKeyDown = useCallback(
-    (event) => {
+    event => {
       const isCtrlCmdHold = event.ctrlKey || event.metaKey;
       const isEnterKey = event.key === 'Enter';
 
@@ -22,13 +24,13 @@ export function SendMessage({sendOnCtrlEnter, value, onSend, onChange}) {
         onSend();
       }
     },
-    [sendOnCtrlEnter, valueIsEmpty, onSend]
+    [sendOnCtrlEnter, valueIsEmpty, onSend],
   );
 
   return (
     <SendMessageGrid>
       <StyledTextField
-        placeholder={intl.formatMessage({id: 'CHAT.SEND_MESSAGE.INPUT.PLACEHOLDER'})}
+        placeholder={intl.formatMessage({ id: 'CHAT.SEND_MESSAGE.INPUT.PLACEHOLDER' })}
         variant="outlined"
         value={value}
         onChange={onChange}
@@ -36,20 +38,20 @@ export function SendMessage({sendOnCtrlEnter, value, onSend, onChange}) {
         fullWidth
       />
       <StyledButton onClick={onSend} disabled={valueIsEmpty}>
-        <SendRoundedIcon/>
+        <SendRoundedIcon />
       </StyledButton>
     </SendMessageGrid>
   );
 }
 
 SendMessage.defaultProps = {
-  onSend: () => {
-  },
+  onSend: () => {},
+  value: '',
 };
 
 SendMessage.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   onSend: PropTypes.func,
-  sendOnCtrlEnter: PropTypes.bool.isRequired
+  sendOnCtrlEnter: PropTypes.bool.isRequired,
+  value: PropTypes.string,
 };

@@ -1,4 +1,4 @@
-import {trim} from './trim';
+import { trim } from './trim';
 
 export function isEmpty(str = '') {
   const isNumber = typeof str === 'number';

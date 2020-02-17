@@ -17,7 +17,7 @@ const {
   updateHour12,
   updateEnterMode,
   updateLanguage,
-  resetDefaults
+  resetDefaults,
 } = createActions(
   UPDATE_USER_NAME,
   UPDATE_INTERFACE_COLOR,
@@ -25,7 +25,7 @@ const {
   UPDATE_ENTER_MODE,
   UPDATE_LANGUAGE,
   RESET_DEFAULTS,
-  { prefix: STATE_KEY }
+  { prefix: STATE_KEY },
 );
 
 export const actions = {
@@ -34,7 +34,7 @@ export const actions = {
   updateHour12,
   updateEnterMode,
   updateLanguage,
-  resetDefaults
+  resetDefaults,
 };
 
 /* State */
@@ -48,7 +48,7 @@ const initialState = {
 
 const createUpdateHandler = stateAttr => (state, action) => ({
   ...state,
-  [stateAttr]: action.payload
+  [stateAttr]: action.payload,
 });
 
 /* Reducer */
@@ -59,8 +59,8 @@ export default handleActions({
   [updateEnterMode]: createUpdateHandler('enterMode'),
   [updateLanguage]: createUpdateHandler('language'),
   [resetDefaults]: () => ({
-    ...initialState
-  })
+    ...initialState,
+  }),
 }, initialState);
 
 /* Selectors */

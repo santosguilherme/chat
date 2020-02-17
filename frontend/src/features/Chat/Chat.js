@@ -1,12 +1,12 @@
-import React, {useCallback, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Screen from 'commons/components/Screen/Screen';
-import {actions as messagesActions, selectors as messagesSelectors} from 'redux/modules/messages';
-import {selectors as userSettingsSelectors} from 'redux/modules/userSettings';
+import { actions as messagesActions, selectors as messagesSelectors } from 'redux/modules/messages';
+import { selectors as userSettingsSelectors } from 'redux/modules/userSettings';
 
 import ChatMessage from './components/ChatMessage/ChatMessage';
-import {SendMessage} from './components/SendMessage/SendMessage';
+import { SendMessage } from './components/SendMessage/SendMessage';
 
 function Chat() {
   const dispatch = useDispatch();
@@ -21,60 +21,74 @@ function Chat() {
   const [message, setMessage] = useState('');
 
   const handleChangeMessage = useCallback(
-    (event) => setMessage(event.target.value),
-    []
+    event => setMessage(event.target.value),
+    [],
   );
 
   const handleSendMessageClick = useCallback(
     () => {
-      dispatch(messagesActions.sendMessage({ userName, text: message}));
+      dispatch(messagesActions.sendMessage({ userName, text: message }));
       setMessage('');
     },
-    [dispatch, message, userName]
+    [dispatch, message, userName],
   );
 
-  const isLoggedUserMessage = messageUserId => {
-    return loggedUserId === messageUserId;
+  const isLoggedUserMessage = messageUserId => loggedUserId === messageUserId;
+
+  const renderLoggedUserMessage = (loggedMessage, props) => {
+    const { id, text, dateTime } = loggedMessage;
+
+    return (
+      <ChatMessage
+        key={id}
+        align="right"
+        backgroundColor="chat.loggedMessage"
+        message={text}
+        dateTime={dateTime}
+        {...props}
+      />
+    );
   };
 
-  const renderLoggedUserMessage = ({ id, text, dateTime}, props) => (
-    <ChatMessage
-      key={id}
-      align="right"
-      backgroundColor="chat.loggedMessage"
-      message={text}
-      dateTime={dateTime}
-      {...props}
-    />
-  );
+  const renderNonLoggedUserMessage = (nonLoggedMessage, props) => {
+    const {
+      id, userName: messageUserName, text, dateTime,
+    } = nonLoggedMessage;
 
-  const renderNonLoggedUserMessage = ({id, userName, text, dateTime}, props) => (
-    <ChatMessage
-      key={id}
-      userName={userName}
-      message={text}
-      dateTime={dateTime}
-      {...props}
-    />
-  );
+    return (
+      <ChatMessage
+        key={id}
+        userName={messageUserName}
+        message={text}
+        dateTime={dateTime}
+        {...props}
+      />
+    );
+  };
 
   // TODO: useMemo?
-  const renderChatMessage = message => {
-    const { userId } = message;
+  const renderChatMessage = chatMessage => {
+    const { userId } = chatMessage;
+
     return isLoggedUserMessage(userId)
-      ? renderLoggedUserMessage(message, { hour12 })
-      : renderNonLoggedUserMessage(message, { hour12 });
+      ? renderLoggedUserMessage(chatMessage, { hour12 })
+      : renderNonLoggedUserMessage(chatMessage, { hour12 });
   };
 
   return (
     <Screen>
-      {({Content, Footer}) => (
+      {({ Content, Footer }) => (
         <>
           <Content backgroundColor="chat.content" alignContent="end">
             {messages.map(renderChatMessage)}
           </Content>
           <Footer backgroundColor="chat.send">
-            <SendMessage value={message} onChange={handleChangeMessage} onSend={handleSendMessageClick} sendOnCtrlEnter={enterMode}/>
+            <SendMessage
+              value={message}
+              onChange={handleChangeMessage}
+              onSend={handleSendMessageClick}
+              sendOnCtrlEnter={enterMode}
+            />
           </Footer>
         </>
       )}

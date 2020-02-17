@@ -5,8 +5,8 @@ export default createMuiTheme({
     chat: {
       content: '#E5DDD5',
       send: '#f0f0f0',
-      loggedMessage: '#DCF8C6'
-    }
+      loggedMessage: '#DCF8C6',
+    },
   },
 });
 
@@ -16,7 +16,7 @@ export const darkTheme = createMuiTheme({
     chat: {
       content: darken('#E5DDD5', 0.8),
       send: '#424242',
-      loggedMessage: '#009688'
-    }
+      loggedMessage: '#009688',
+    },
   },
 });

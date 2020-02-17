@@ -13,24 +13,24 @@ const {
 } = createActions(
   CONNECT_WEBSOCKET,
   SET_WEBSOCKET_CONNECTED,
-  { prefix: STATE_KEY }
+  { prefix: STATE_KEY },
 );
 
 export const actions = {
   connectWebsocket,
-  setWebsocketConnected
+  setWebsocketConnected,
 };
 
 /* State */
 const initialState = {
-  isWebsocketConnected: false
+  isWebsocketConnected: false,
 };
 
 /* Reducer */
 export default handleActions({
-  [setWebsocketConnected]: (state) => ({
+  [setWebsocketConnected]: state => ({
     ...state,
-    isWebsocketConnected: true
+    isWebsocketConnected: true,
   }),
 }, initialState);
 

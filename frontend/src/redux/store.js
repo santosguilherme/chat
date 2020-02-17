@@ -1,16 +1,16 @@
-import {applyMiddleware, compose, createStore} from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import {STATE_KEY as userSettingsKey } from './modules/userSettings';
+import { STATE_KEY as userSettingsKey } from './modules/userSettings';
 import saga from './chat'; // TODO
 import rootReducer from './reducers';
 
 const persistConfig = {
   key: 'chat',
   storage,
-  whitelist: [userSettingsKey]
+  whitelist: [userSettingsKey],
 };
 
 const sagaMiddleware = createSagaMiddleware();
@@ -32,6 +32,6 @@ export default () => {
 
   return {
     store,
-    persistor: persistStore(store)
+    persistor: persistStore(store),
   };
 };

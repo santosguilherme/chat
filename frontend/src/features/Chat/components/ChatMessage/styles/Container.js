@@ -1,19 +1,15 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import get from 'commons/utils/object/get';
 
-const horizontalPositionCSS = ({left}) => {
-  return !left && css`
-    justify-content: flex-end;
-  `;
-};
+const horizontalPositionCSS = ({ left }) => !left && css`
+  justify-content: flex-end;
+`;
 
 // TODO: reuse
-const backgroundColorCSS = ({theme, backgroundColor}) => {
-  return css`
-    background-color: ${get(backgroundColor, theme.palette)};
-  `;
-};
+const backgroundColorCSS = ({ theme, backgroundColor }) => css`
+  background-color: ${get(backgroundColor, theme.palette)};
+`;
 
 export const MessageRow = styled.div`
   display: flex;
@@ -22,11 +18,9 @@ export const MessageRow = styled.div`
   ${horizontalPositionCSS};
 `;
 
-const messageAlignCss = ({align}) => {
-  return css`
+const messageAlignCss = ({ align }) => css`
     border-top-${align}-radius: 0;
   `;
-};
 
 export const Message = styled.div`
   display: grid;
