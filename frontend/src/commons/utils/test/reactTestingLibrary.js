@@ -8,8 +8,13 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/styles';
 
 import theme from 'commons/styles/theme';
 
+const defaultTestMessages = {
+  'CHAT.SEND_MESSAGE.BUTTON.LABEL': 'send message button label',
+  'CHAT.SEND_MESSAGE.INPUT.PLACEHOLDER': 'send message input placeholder',
+};
+
 const AllTheProviders = ({ children }) => (
-  <IntlProvider locale="en-US" messages={{}}>
+  <IntlProvider locale="en-US" messages={defaultTestMessages}>
     <MuiThemeProvider theme={theme}>
       <ThemeProvider theme={theme}>
         {children}
