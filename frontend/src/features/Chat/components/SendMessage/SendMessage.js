@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import { useIntl } from 'react-intl';
+import SendRoundedIcon from '@material-ui/icons/SendRounded';
 
 import { isEmpty } from 'commons/utils/string/isEmpty';
 
@@ -30,6 +30,11 @@ function SendMessage({
   return (
     <SendMessageGrid>
       <StyledTextField
+        id="messageText"
+        name="messageText"
+        inputProps={{
+          'aria-label': intl.formatMessage({ id: 'CHAT.SEND_MESSAGE.INPUT.PLACEHOLDER' }),
+        }}
         placeholder={intl.formatMessage({ id: 'CHAT.SEND_MESSAGE.INPUT.PLACEHOLDER' })}
         variant="outlined"
         value={value}
@@ -37,7 +42,12 @@ function SendMessage({
         onKeyDown={handleKeyDown}
         fullWidth
       />
-      <StyledButton onClick={onSend} disabled={valueIsEmpty}>
+      <StyledButton
+        aria-label={intl.formatMessage({ id: 'CHAT.SEND_MESSAGE.BUTTON.LABEL' })}
+        onClick={onSend}
+        disabled={valueIsEmpty}
+        aria-disabled={valueIsEmpty}
+      >
         <SendRoundedIcon />
       </StyledButton>
     </SendMessageGrid>
