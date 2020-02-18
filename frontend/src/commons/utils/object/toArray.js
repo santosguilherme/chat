@@ -1,3 +1,3 @@
-export default function toArray(object = {}) {
+export function toArray(object = {}) {
   return Object.keys(object).map(key => object[key]) || [];
 }

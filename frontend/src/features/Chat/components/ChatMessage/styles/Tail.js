@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import get from 'commons/utils/object/get';
+import { get } from 'commons/utils/object/get';
 
 const tailAlignCss = ({ align }) => css`
   border-${align}: 10px solid transparent;

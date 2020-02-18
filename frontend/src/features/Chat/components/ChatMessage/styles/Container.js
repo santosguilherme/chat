@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import get from 'commons/utils/object/get';
+import { get } from 'commons/utils/object/get';
 
 const horizontalPositionCSS = ({ left }) => !left && css`
   justify-content: flex-end;

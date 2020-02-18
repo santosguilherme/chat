@@ -1,6 +1,6 @@
 import { createActions, handleActions } from 'redux-actions';
 
-import toArray from 'commons/utils/object/toArray';
+import { toArray } from 'commons/utils/object/toArray';
 
 export const STATE_KEY = 'messages';
 
