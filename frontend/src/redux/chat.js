@@ -20,7 +20,9 @@ function* write(socket) {
 }
 
 function connect() {
-  const socket = io('http://192.168.15.17:8080/');
+  const { protocol, hostname } = window.location;
+
+  const socket = io(`${protocol}//${hostname}:8080`);
   return new Promise(resolve => {
     socket.on('connect', () => {
       resolve(socket);
@@ -55,8 +57,7 @@ function join(socket) {
 
     socket.on('chat.join', update);
 
-    return () => {
-    };
+    return () => {};
   });
 }
 
