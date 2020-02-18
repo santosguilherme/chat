@@ -19,7 +19,7 @@ function InputRadio({
           <FormControlLabel
             key={option.value}
             value={option.value}
-            control={<Radio />}
+            control={<Radio inputProps={{ 'aria-label': option.label }} />}
             label={option.label}
           />
         ))}
