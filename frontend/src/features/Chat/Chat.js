@@ -1,4 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, {
+  useCallback, useEffect, useState, memo, useRef,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Screen from 'commons/components/Screen/Screen';
@@ -11,6 +13,8 @@ import { ContentWrapper } from './styles/Content';
 
 function Chat() {
   const dispatch = useDispatch();
+  const messageWrapperRef = useRef();
+  const [message, setMessage] = useState('');
 
   const userName = useSelector(userSettingsSelectors.getUserName);
   const hour12 = useSelector(userSettingsSelectors.getHour12);
@@ -19,7 +23,12 @@ function Chat() {
   const messages = useSelector(messagesSelectors.getMessages);
   const loggedUserId = useSelector(messagesSelectors.getUserId);
 
-  const [message, setMessage] = useState('');
+  useEffect(() => {
+    if (messages && messages.length) {
+      const { current } = messageWrapperRef;
+      current.scrollTop = current.scrollHeight;
+    }
+  }, [messages]);
 
   const handleChangeMessage = useCallback(
     event => setMessage(event.target.value),
@@ -85,7 +94,7 @@ function Chat() {
     <Screen>
       {({ Content, Footer }) => (
         <>
-          <ContentWrapper>
+          <ContentWrapper ref={messageWrapperRef}>
             <Content backgroundColor="chat.content" alignContent="end">
               {messages.map(renderChatMessage)}
             </Content>
@@ -104,4 +113,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default memo(Chat);
