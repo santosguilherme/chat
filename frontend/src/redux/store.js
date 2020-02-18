@@ -4,7 +4,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import { STATE_KEY as userSettingsKey } from './modules/userSettings';
-import saga from './chat'; // TODO
+import rootSaga from './sagas';
 import rootReducer from './reducers';
 
 const persistConfig = {
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'development' && module.hot) {
 }
 
 export default () => {
-  sagaMiddleware.run(saga);
+  sagaMiddleware.run(rootSaga);
 
   return {
     store,

@@ -4,8 +4,8 @@ import {
 import { eventChannel } from 'redux-saga';
 import io from 'socket.io-client';
 
-import { actions } from './modules/messages';
-import { actions as appActions } from './modules/app';
+import { actions } from '../modules/messages';
+import { actions as appActions } from '../modules/app';
 
 function* write(socket) {
   while (true) {
@@ -21,8 +21,8 @@ function* write(socket) {
 
 function connect() {
   const { protocol, hostname } = window.location;
-
   const socket = io(`${protocol}//${hostname}:8080`);
+
   return new Promise(resolve => {
     socket.on('connect', () => {
       resolve(socket);
@@ -36,8 +36,7 @@ export function subscribe(socket) {
 
     socket.on('chat.receive', update);
 
-    return () => {
-    };
+    return () => {};
   });
 }
 
@@ -71,7 +70,7 @@ function* readJoin(socket) {
   }
 }
 
-export function* flow() {
+export default function* chatSaga() {
   yield take(appActions.connectWebsocket);
   const socket = yield call(connect);
 
@@ -81,8 +80,4 @@ export function* flow() {
 
   yield delay(1000);
   yield put(appActions.setWebsocketConnected());
-}
-
-export default function* rootSaga() {
-  yield fork(flow);
 }
