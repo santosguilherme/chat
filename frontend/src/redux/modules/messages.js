@@ -10,8 +10,6 @@ const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
 const RESET_UNREAD_MESSAGES = 'RESET_UNREAD_MESSAGES';
 const CHAT_JOIN = 'CHAT_JOIN';
 
-// TODO: rename to chat.js
-
 /* Actions */
 const {
   sendMessage,

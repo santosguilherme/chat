@@ -6,11 +6,6 @@ const horizontalPositionCSS = ({ left }) => !left && css`
   justify-content: flex-end;
 `;
 
-// TODO: reuse
-const backgroundColorCSS = ({ theme, backgroundColor }) => css`
-  background-color: ${get(backgroundColor, theme.palette)};
-`;
-
 export const MessageRow = styled.div`
   display: flex;
   padding: 0 1rem;
@@ -29,6 +24,6 @@ export const Message = styled.div`
   position: relative;
   border-radius: 7.5px;
 
-  ${backgroundColorCSS};
+  background-color: ${({ theme, backgroundColor }) => get(backgroundColor, theme.palette)};
   ${messageAlignCss};
 `;
