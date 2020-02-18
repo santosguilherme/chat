@@ -1,7 +1,6 @@
 {
   "name": "chat",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@github.com:santosguilherme/chat.git",
   "author": "Guilherme Santos <sntguilherme@gmail.com>",
   "license": "MIT",

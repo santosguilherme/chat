@@ -7,6 +7,7 @@ import { selectors as userSettingsSelectors } from 'redux/modules/userSettings';
 
 import ChatMessage from './components/ChatMessage/ChatMessage';
 import SendMessage from './components/SendMessage/SendMessage';
+import { ContentWrapper } from './styles/Content';
 
 function Chat() {
   const dispatch = useDispatch();
@@ -84,9 +85,11 @@ function Chat() {
     <Screen>
       {({ Content, Footer }) => (
         <>
-          <Content backgroundColor="chat.content" alignContent="end">
-            {messages.map(renderChatMessage)}
-          </Content>
+          <ContentWrapper>
+            <Content backgroundColor="chat.content" alignContent="end">
+              {messages.map(renderChatMessage)}
+            </Content>
+          </ContentWrapper>
           <Footer backgroundColor="chat.send">
             <SendMessage
               value={message}
