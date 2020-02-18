@@ -1,0 +1,375 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatMessage align the custom value 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 1rem;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c1 {
+  display: grid;
+  grid-template-columns: auto auto;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,.13);
+  position: relative;
+  border-radius: 7.5px;
+  background-color: #fff;
+  border-top-right-radius: 0;
+}
+
+.c3 {
+  padding: 0.7rem;
+}
+
+.c4 {
+  -webkit-align-self: end;
+  -ms-flex-item-align: end;
+  align-self: end;
+  padding: 0.5rem;
+}
+
+.c2 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #fff;
+  border-right: 10px solid transparent;
+  right: -10px;
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <span
+      class="c2"
+    />
+    <div
+      class="c3"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle2"
+      />
+      <p
+        class="MuiTypography-root MuiTypography-body2"
+      >
+        any message
+      </p>
+    </div>
+    <div
+      class="c4"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-caption"
+        title="2/17/2020, 11:36:37 PM"
+      >
+        11:36 PM
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChatMessage align the default value 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 1rem;
+}
+
+.c1 {
+  display: grid;
+  grid-template-columns: auto auto;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,.13);
+  position: relative;
+  border-radius: 7.5px;
+  background-color: #fff;
+  border-top-left-radius: 0;
+}
+
+.c3 {
+  padding: 0.7rem;
+}
+
+.c4 {
+  -webkit-align-self: end;
+  -ms-flex-item-align: end;
+  align-self: end;
+  padding: 0.5rem;
+}
+
+.c2 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #fff;
+  border-left: 10px solid transparent;
+  left: -10px;
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <span
+      class="c2"
+    />
+    <div
+      class="c3"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle2"
+      />
+      <p
+        class="MuiTypography-root MuiTypography-body2"
+      >
+        any message
+      </p>
+    </div>
+    <div
+      class="c4"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-caption"
+        title="2/17/2020, 11:36:37 PM"
+      >
+        11:36 PM
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChatMessage backgroundColor the custom value 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 1rem;
+}
+
+.c1 {
+  display: grid;
+  grid-template-columns: auto auto;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,.13);
+  position: relative;
+  border-radius: 7.5px;
+  background-color: #DCF8C6;
+  border-top-left-radius: 0;
+}
+
+.c3 {
+  padding: 0.7rem;
+}
+
+.c4 {
+  -webkit-align-self: end;
+  -ms-flex-item-align: end;
+  align-self: end;
+  padding: 0.5rem;
+}
+
+.c2 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #DCF8C6;
+  border-left: 10px solid transparent;
+  left: -10px;
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <span
+      class="c2"
+    />
+    <div
+      class="c3"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle2"
+      />
+      <p
+        class="MuiTypography-root MuiTypography-body2"
+      >
+        any message
+      </p>
+    </div>
+    <div
+      class="c4"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-caption"
+        title="2/17/2020, 11:36:37 PM"
+      >
+        11:36 PM
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChatMessage backgroundColor the default value 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 1rem;
+}
+
+.c1 {
+  display: grid;
+  grid-template-columns: auto auto;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,.13);
+  position: relative;
+  border-radius: 7.5px;
+  background-color: #fff;
+  border-top-left-radius: 0;
+}
+
+.c3 {
+  padding: 0.7rem;
+}
+
+.c4 {
+  -webkit-align-self: end;
+  -ms-flex-item-align: end;
+  align-self: end;
+  padding: 0.5rem;
+}
+
+.c2 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #fff;
+  border-left: 10px solid transparent;
+  left: -10px;
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <span
+      class="c2"
+    />
+    <div
+      class="c3"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle2"
+      />
+      <p
+        class="MuiTypography-root MuiTypography-body2"
+      >
+        any message
+      </p>
+    </div>
+    <div
+      class="c4"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-caption"
+        title="2/17/2020, 11:36:37 PM"
+      >
+        11:36 PM
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChatMessage userName is not displayed when omitted 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 1rem;
+}
+
+.c1 {
+  display: grid;
+  grid-template-columns: auto auto;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,.13);
+  position: relative;
+  border-radius: 7.5px;
+  background-color: #fff;
+  border-top-left-radius: 0;
+}
+
+.c3 {
+  padding: 0.7rem;
+}
+
+.c4 {
+  -webkit-align-self: end;
+  -ms-flex-item-align: end;
+  align-self: end;
+  padding: 0.5rem;
+}
+
+.c2 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #fff;
+  border-left: 10px solid transparent;
+  left: -10px;
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <span
+      class="c2"
+    />
+    <div
+      class="c3"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle2"
+      />
+      <p
+        class="MuiTypography-root MuiTypography-body2"
+      >
+        any message
+      </p>
+    </div>
+    <div
+      class="c4"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-caption"
+        title="2/17/2020, 11:36:37 PM"
+      >
+        11:36 PM
+      </span>
+    </div>
+  </div>
+</div>
+`;
