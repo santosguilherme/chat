@@ -14,8 +14,8 @@ export const MessageRow = styled.div`
 `;
 
 const messageAlignCss = ({ align }) => css`
-    border-top-${align}-radius: 0;
-  `;
+  border-top-${align}-radius: 0;
+`;
 
 export const Message = styled.div`
   display: grid;
