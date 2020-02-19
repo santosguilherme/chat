@@ -23,17 +23,6 @@ function* write(socket) {
   }
 }
 
-function connect() {
-  const { protocol, hostname } = window.location;
-  const socket = io(`${protocol}//${hostname}:8080`);
-
-  return new Promise(resolve => {
-    socket.on(CONNECTED, () => {
-      resolve(socket);
-    });
-  });
-}
-
 export function subscribe(socket) {
   return eventChannel(emit => {
     const update = message => emit(actions.updateMessages(message));
@@ -42,16 +31,6 @@ export function subscribe(socket) {
 
     return () => {};
   });
-}
-
-function* read(socket) {
-  const channel = yield call(subscribe, socket);
-
-  while (true) {
-    const action = yield take(channel);
-
-    yield put(action);
-  }
 }
 
 function join(socket) {
@@ -64,8 +43,8 @@ function join(socket) {
   });
 }
 
-function* readJoin(socket) {
-  const channel = yield call(join, socket);
+function* read(socket, callFn) {
+  const channel = yield call(callFn, socket);
 
   while (true) {
     const action = yield take(channel);
@@ -74,12 +53,23 @@ function* readJoin(socket) {
   }
 }
 
+function connect() {
+  const { protocol, hostname } = window.location;
+  const socket = io(`${protocol}//${hostname}:8080`);
+
+  return new Promise(resolve => {
+    socket.on(CONNECTED, () => {
+      resolve(socket);
+    });
+  });
+}
+
 export default function* chatSaga() {
   yield take(appActions.connectWebsocket);
   const socket = yield call(connect);
 
-  yield fork(readJoin, socket);
-  yield fork(read, socket);
+  yield fork(read, socket, join);
+  yield fork(read, socket, subscribe);
   yield fork(write, socket);
 
   yield delay(1000);
