@@ -71,4 +71,4 @@ Prepare the server for distribution, now it's only configured to run locally.
 
 A good alternative would be to use [PM2](https://github.com/Unitech/pm2) to run the server, in addition to distributing it with a docker image that would facilitate execution in several different environments.
 
-Another important point would also be to parameterize the server port configuration via an environment variable, suggestion for use would be the [dotenv](https://github.com/motdotla/dotenv) library or just retrieve directly from the Node.js process`(e.g: `process.env.WS_SERVER_PORT`).
+Another important point would also be to parameterize the server port configuration via an environment variable, suggestion for use would be the [dotenv](https://github.com/motdotla/dotenv) library or just retrieve directly from the Node.js process (e.g: `process.env.WS_SERVER_PORT`).
