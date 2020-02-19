@@ -47,7 +47,7 @@ chat
 └── frontend/        # Module with the application's frontend layer (SPA)
 ```
 
-## How its work
+### How they work
 When the frontend application starts from a browser, a request to connect to the WebSocket server is sent.
 Right after this request, the customer subscribes to a channel (`chat.join`) to be notified when the connection request is successfully completed.
 
