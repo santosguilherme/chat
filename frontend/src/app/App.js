@@ -39,6 +39,9 @@ function App() {
 
   useEffect(() => {
     dispatch(appActions.connectWebsocket());
+    return () => {
+      dispatch(appActions.disconnectWebsocket());
+    };
   }, [dispatch]);
 
   const selectedTheme = themes[interfaceColor];

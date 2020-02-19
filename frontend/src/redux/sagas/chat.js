@@ -11,6 +11,14 @@ import {
 import { actions } from '../modules/messages';
 import { actions as appActions } from '../modules/app';
 
+function* close(socket) {
+  while (true) {
+    yield take(appActions.disconnectWebsocket);
+
+    socket.close();
+  }
+}
+
 function* write(socket) {
   while (true) {
     const { payload } = yield take(actions.sendMessage);
@@ -71,6 +79,7 @@ export default function* chatSaga() {
   yield fork(read, socket, join);
   yield fork(read, socket, subscribe);
   yield fork(write, socket);
+  yield fork(close, socket);
 
   yield delay(1000);
   yield put(appActions.setWebsocketConnected());
