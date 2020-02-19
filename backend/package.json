@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "main": "src/server.js",
+  "engines": {
+    "node": ">=13.5.0"
+  },
   "scripts": {
     "start": "nodemon src/server.js"
   },
