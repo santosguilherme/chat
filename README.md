@@ -16,7 +16,7 @@ git --version
 
 If you don't have it installed, go to the [download page](https://git-scm.com/downloads) and follow the instructions for installation.
 
-### Have version 13.5.0+ of Node.js installed.
+### Have version 13.5.0 or + of Node.js installed
 You need the `v13.5.0+` of [Node.js](https://nodejs.org/) installed in your environment, you can check if you have git installed by running the following command:
 
 ```sh
@@ -25,7 +25,7 @@ node --version
 
 If you don't have it installed, go to the [download page](https://nodejs.org/) and follow the instructions for installation.
 
-### Have Yarn installed
+### Have yarn installed
 This project uses `yarn` as its task runner and, although not a rule, it's recommended that you use it.
 To install it, execute the following script on the terminal:
 
