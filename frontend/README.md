@@ -44,6 +44,8 @@ You can access the folder via terminal, at the root of the repository, run in th
 cd frontend
 ```
 
+For all available tasks check the [package.json](package.json) file.
+
 ### Folder structure
 This is what each folder correlates to:
 
