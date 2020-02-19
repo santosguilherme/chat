@@ -48,46 +48,19 @@ chat
 └── frontend/        # Module with the application's frontend layer (SPA)
 ```
 
-## Explicar aqui como eu segui o processo
-
-por a foto de como é o fluxo
-
-## falar dos modulos
-
-Folder structure
-This is what each folder correlates to:
-
-www-latam
-├── .circleci/          # CircleCI configs
-├── .github/            # Github repository configs
-├── docs/               # Documentation files
-├── nuds-web/           # Nubank Design System components for React projects
-├── scripts/            # Auxiliary scripts to build tasks
-├── sites/              # Folder to AR, BR and MX websites
-└── www-latam-commons/  # Shared generic components and logic to AR and MX websites
-
-## referencias
-
-------------------------------
-
-## em cada módulo falar:
+## Development
 
 
-Folder structure
-This is what each folder correlates to:
+### References
 
-www-latam
-├── .circleci/          # CircleCI configs
-├── .github/            # Github repository configs
-├── docs/               # Documentation files
-├── nuds-web/           # Nubank Design System components for React projects
-├── scripts/            # Auxiliary scripts to build tasks
-├── sites/              # Folder to AR, BR and MX websites
-└── www-latam-commons/  # Shared generic components and logic to AR and MX websites
+Here is the list of the links used to design this solution:
+- https://github.com/kuy/redux-saga-chat-example
+- https://github.com/ganeshmani/reduxsaga-socket
+- https://github.com/justadudewhohacks/websocket-chat
+- https://github.com/saibot777/redux-saga-socketIO-chat-app
+- https://dev.to/mihailgaberov/how-to-build-a-chat-app-with-react-typescript-and-socket-io-2e1c
+- https://www.freecodecamp.org/news/how-to-build-a-chat-application-using-react-redux-redux-saga-and-web-sockets-47423e4bc21a/
+- https://mihail-gaberov.eu/how-i-built-chat-app-with-react-and-typescript-part3/
+- https://medium.com/@otaviobn/como-usar-websockets-com-o-redux-saga-9db41ee033e6
 
-### Tecnologias
-### Tasks
- Todos os comandos devem ser executados dentro da pasdta
-### Melhorias
-
-
+And the documentation from the libraries used was also used.
