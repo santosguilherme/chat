@@ -5,14 +5,13 @@
   "scripts": {
     "build": "react-scripts build",
     "build:serve": "yarn build && http-server ./build -p 3000",
-    "eject": "react-scripts eject",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:css": "stylelint --ignore-path .gitignore 'src/**/*.js'",
     "lint:fix": "yarn lint:js --fix && yarn lint:css --fix",
     "lint:js": "eslint --ignore-path .gitignore src",
     "lint:package": "sort-package-json",
     "start": "react-scripts start",
-    "test": "react-scripts test"
+    "test": "react-scripts test --verbose"
   },
   "husky": {
     "hooks": {

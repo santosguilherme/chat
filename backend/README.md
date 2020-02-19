@@ -40,7 +40,7 @@ You can access the folder via terminal, at the root of the repository, run in th
 cd backend
 ```
 
-#### Running Locally
+### Running Locally
 After you clone the project, perform the following steps to run the project locally.
 
 By default, this server will use port `8080, if you need to change this port, change it directly in the [server code](src/server.js).
@@ -54,7 +54,6 @@ yarn install
 # Start local development
 yarn start
 
-# open http://localhost:3000 to view it in the browser.
 # the server will reload if you make edits
 # errors will show up in the console
 ```
