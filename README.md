@@ -1,5 +1,4 @@
 # Chat App
-
 This is a real-time chat application built with [Node.js](https://nodejs.org/en/) and [React.js](https://reactjs.org/).
 
 ## Author
@@ -50,6 +49,7 @@ chat
 
 ## Development
 
+![Communication between frontend and backend](docs/flow.png)
 
 ### References
 
