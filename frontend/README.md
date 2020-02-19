@@ -2,36 +2,23 @@
 
 This is the SPA module of the Chat application, its responsible to send and receive the users' messages and configure some personal preferences.
 
+The interface was based on some elements of the WhatsApp web application.
+
 ## Technologies
 
-- React é uma biblioteca para desenvolver os elementos visuais da aplicação.
-- create-react-app é a ferramenta que faz o bootstrapp da aplicação react.
-- Redux é a biblioteca que gerencia os estados da aplicação .
-- Redux-persist é a biblioteca responsável por sincronizar parte do estado da aplicação com o localStorage.
-- Redux-saga é a biblioteca que está conectada ao servidor via o socket.io-client e envia os novos dados para o Redux atualizar o estado atual.
-- Material-UI é uma biblioteca de componentes seguindo a implementação do Google Material IO, foi utilizada para não precisar implementar componentes (inputs, botões, etc) e de controle de tema.
-- Styled-components é uma biblioteca de estilização visual e foi utilizada para customizar os componentes da aplicação e também para montar o layout estrutural.
-- React-intl é a biblioteca de internacionalização.
-
-jest é uma biblioteca de exeução e asserção de testes automatizados
-react testing library é a biblioteca de renderização dos componentes nos testes automatizados
-As bibliotecas eslint, stylelint e sort-package-json foram configuradas para manter um padrão de código na aplicação.
-As bibliotecas lint-staged e husky são utilizadas para executar o `lint` do código antes de cada commit.
-http-server é uma biblioteca que executa um servidor HTTP, permitindo servir o projeto após o build localmente.
-
-
-## Features
-
-A interface foi baseada em alguns elementos da aplicação web do WhatsApp.
-
-### Connection
-
-
-### Sending and receiving messages
-
-
-### Settings
-
+- [React](https://github.com/facebook/react) is a library for developing the visual elements of the application.
+- [Create React App](https://github.com/facebook/create-react-app) is the tool that bootstraps the React application.
+- [Redux](https://github.com/reduxjs/redux) is the library that manages the states of the application, it is responsible for updating the application with the new states, for example, when a value in the user settings is changed or a new message is received, Redux updates its state and the application is changed accordingly.
+- [Redux-persist](https://github.com/rt2zz/redux-persist) is the library responsible for synchronizing part or all of the redux store with localStorage, it is used to store the user's settings in localStorage.
+- [Redux-saga](https://github.com/redux-saga/redux-saga) is the library that is connected to the server via [socket.io-client](https://github.com/socketio/socket.io-client) and sends the new data to Redux to update the current state of the application.
+- [Material-UI](https://github.com/mui-org/material-ui) is a component library following the implementation of [Google Material](https://material.io/) guides, it was used to avoid having to implement components (inputs, buttons, etc.) and theme control (dark and light).
+- [Styled-components](https://github.com/styled-components/styled-components) is a visual styling library and was used to customize the application's components and also to build the structural layout.
+- [React-intl](https://github.com/formatjs/react-intl) is the internationalization library.
+- [Jest](https://github.com/facebook/jest) is an automated test execution and assertion library.
+- [React Testing Library](https://github.com/testing-library/react-testing-library) is a React component rendering library to automated tests.
+- The [eslint](https://github.com/eslint/eslint), [stylelint](https://github.com/stylelint/stylelint) and [sort-package-json](https://github.com/keithamus/sort-package-json) libraries were configured to maintain a code standard in the application.
+- The [lint-staged](https://github.com/okonet/lint-staged) and [husky](https://github.com/typicode/husky) libraries are used to `lint` the code before each commit.
+- [http-server](https://github.com/http-party/http-server) is a library that runs an HTTP server, allowing you to serve the project after the build locally.
 
 ## Getting started
 Before executing the commands, make sure that you are using the necessary versions specified in the root requirements section.
@@ -49,12 +36,20 @@ For all available tasks check the [package.json](package.json) file.
 ### Folder structure
 This is what each folder correlates to:
 
-// TODO
 ```
-chat
-├── backend/         # Module with the application backend server
-└── frontend/        # Module with the application's frontend layer (SPA)
+chat/frontend/src
+├── app/            # Initial application component that also changes structural things based on the state of the application (settings and messages)
+├── commons/        # Common files in the application's features, such as structural components and utils functions
+├── features/       # Screen components linked to features and application store (Containers)
+├── locale/         # Directory with language files for translation
+└── redux/          # Directories with files that are part of the configuration, management of the application state and side effects
 ```
+
+The components were developed with the intention of being close to the other necessary components that are used only in that context.
+
+Within each component folder, there may be a `styles` folder, with all components being styled-components only or overwriting an existing style.
+
+There may also be a `components` folder which is where the components that were created to compose and create the component will be.
 
 ### Running Locally
 After you clone the project, perform the following steps to run the project locally.
@@ -113,7 +108,7 @@ In a terminal window:
 
 ```sh
 # Start the project after the build
-yarn build:serve
+yarn build
 
 # the files will be ready on the build directory
 ```
