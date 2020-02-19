@@ -47,7 +47,25 @@ chat
 └── frontend/        # Module with the application's frontend layer (SPA)
 ```
 
-## Development
+## How its work
+When the frontend application starts from a browser, a request to connect to the WebSocket server is sent.
+Right after this request, the customer subscribes to a channel (`chat.join`) to be notified when the connection request is successfully completed.
+
+When making the connection, the server sends a message to the channel (`chat.join`) of the client application with the connection identifier which is also used as the user's identifier.
+
+After making the connection, the client application subscribes to the channel (`chat.receive`) of messages received from the chat.
+
+When a chat message is sent on the client, a message is sent to the server's (`chat.send`) channel.
+The server then processes this message, creates a unique identifier for it and also adds some more necessary information such as the author's identifier and the date and time of the message.
+After that, the server broadcasts the message to all connected clients, making the message visible on all clients, including the author.
+
+The server doesn't store the messages sent, it only processes and resends them to all clients with an active connection.
+
+Differentiation of messages received does only on the client, making it possible to display which messages are from the author and which are not.
+
+When the application is being closed, a connection cancellation request is sent to the server by the client.
+
+The image below illustrates the flow of messages and notifications that occurs between the client and the server.
 
 ![Communication between frontend and backend](docs/flow.png)
 
