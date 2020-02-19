@@ -1,26 +1,32 @@
 # Chat App
 
-// TODO
+This is a real-time chat application built with [Node.js](https://nodejs.org/en/) and [React.js](https://reactjs.org/).
 
 ## Author
 Guilherme Santos <sntguilherme@gmail.com>
 
 ## Requirements
-Por favor, verifique se você possui os seguintes itens instalados no seu computador, eles são necessários para rodar
-a aplicação.
+Please make sure you have the following items installed on your environment, they are necessary to execute the application.
 
-### git
-Você pode verificar se possuí o git instalado executando o seguinte comando:
+### Have git installed
+You need [git](https://git-scm.com) installed in your environment, you can check if you have git installed by running the following command:
 
 ```sh
 git --version
 ```
 
-Se você não possui ele instalado, acesse a página de download e siga as instruções para a instalação.
+If you don't have it installed, go to the [download page](https://git-scm.com/downloads) and follow the instructions for installation.
 
-### Node.js
+### Have version 13.5.0+ of Node.js installed.
+You need the `v13.5.0+` of [Node.js](https://nodejs.org/) installed in your environment, you can check if you have git installed by running the following command:
 
-### Yarn
+```sh
+node --version
+```
+
+If you don't have it installed, go to the [download page](https://nodejs.org/) and follow the instructions for installation.
+
+### Have Yarn installed
 This project uses `yarn` as its task runner and, although not a rule, it's recommended that you use it.
 To install it, execute the following script on the terminal:
 
@@ -28,6 +34,19 @@ To install it, execute the following script on the terminal:
 npm install --global yarn
 ```
 
+## Modules
+This application has two modules in the same repository: [backend](backend) and [frontend](frontend).
+
+In the directory of each module, there is a more detailed documentation of each one.
+
+### Folder structure
+This is what each folder correlates to:
+
+```
+chat
+├── backend/         # Module with the application backend server
+└── frontend/        # Module with the application's frontend layer (SPA)
+```
 
 ## Explicar aqui como eu segui o processo
 
