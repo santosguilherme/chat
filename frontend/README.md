@@ -107,7 +107,7 @@ yarn build:serve
 In a terminal window:
 
 ```sh
-# Start the project after the build
+# Build the project
 yarn build
 
 # the files will be ready on the build directory
