@@ -32,7 +32,7 @@ When the server receives the message on the `chat.send` channel, it broadcasts i
 ## Getting started
 Before executing the commands, make sure that you are using the necessary versions specified in the root requirements section.
 
-The commands must be executed in the ** backend ** module folder.
+The commands must be executed in the **backend** module directory.
 
 You can access the folder via terminal, at the root of the repository, run in the terminal:
 
